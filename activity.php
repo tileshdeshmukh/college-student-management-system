@@ -121,7 +121,7 @@ if(isset($_POST['add']))
   $team = $_POST['team'];
 
 
-  $sql = mysqli_query($conn, "insert into activity(title, location, year, work_type, team, detail, name, sid) values('$title', '$location', '$year', 'work', 'team', '$detail', '$name', '$saap')");
+  $sql = mysqli_query($conn, "insert into activity(title, location, year, work_type, team, detail, name, sid) values('$title', '$location', '$year', '$work', '$team', '$detail', '$name', '$saap')");
   
 
   if($sql==1){
