@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,9 +15,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>admin</title>
-    <style>
-      tr:hover{
-        background-color: #00181e;
+    <style type="text/css">
+     
+      .anker:hover{
+        color: white;
+        text-decoration: none;
       }
     </style>
   </head>
@@ -33,7 +41,7 @@
                   
                   
                 </ul>
-             <form class="form-inline my-2 my-lg-0" action="logout.php">
+             <form class="form-inline my-2 my-lg-0" action="logout.php"action="logout.php">
                 <button class="btn btn-outline-primary   my-2 my-sm-0" type="submit">Log-out</button>
             </form>
         </div>
@@ -47,7 +55,7 @@
           <div class="sidebar-heading bg-dark mt-1" style="color: "><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MENU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
               <div class="list-group list-group-flush text-center">
                     <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Dashboard</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Shortcuts</a>
+                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
@@ -63,62 +71,62 @@
          </div>
 
           <!-- Page Content -->
-
-
-             <div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
-              <center><h3 class="text-white text-primary"><?php echo $_GET['year'];?> STUDENT</h3></center>
-           
+         <div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
+              <center><h3 class="text-white text-primary">Send Massage</h3></center>
+              <hr class="bg-primary">
               <br>
+              <div class="container-fluid mx-5 px-5">
+                   <form action="msg_send.php?name=<?php echo $_GET['name'];?>&sid=<?php echo $_GET['sid'];?>" method="POST">
+			            <div class="form-group">
+							<p class="text-white"> Massage send to <b><?php echo $_GET['name']; ?></b> and saap id is <b><?php echo $_GET['sid'];?></b></p>
+							<div classs="form-group text-white">
+							<label class="text-white">Sender Name :</label>
+			                 <input type="text" name="sender_name" class="form-control bg-dark text-white" placeholder="Sender name" required="" style="width:54%">			
 
-            
+			                 </div>
+			                 <div class="form-group text-white">
+                 			<label>Massage :</label><br>
+                    		<textarea class="bg-dark text-white" name="msg" rows="8" cols="75" required="required"></textarea>
+              				</div>
+				         </div>
+									        
+									      
+			          <button type="submit" name="sub" class="btn btn-primary" name="send">Send</button>
+			          <a href="admin_msg.php"><button type="button" class="btn btn-danger mr-auto" >Close</button></a>
+			</div>
+									    
 
-                  <?php
-                  include('db.php');
-                  $data = '<table class="table text-white">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Name</th>
-                      <th>Saap ID</th>
-                      <th>Depatment</th>
-                      <th>Year</th>
-                      <th>Details</th>
-                    </tr>
-                  </thead>';
+	</form>
+</div>
+					              <?php
+					              include('db.php');
+							      if (isset($_POST['sub'])) 
+							      {
+									       	$sender = $_POST['sender_name'];
+									        	$msg = $_POST['msg'];
 
-                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '".$_GET['year']."'");
-                  if (mysqli_num_rows($sql) > 0) {
-              
-                  $c = 1;
-                  while($row=mysqli_fetch_array($sql)) {
-                    $data .= '<tbody>
-                            <tr>
-                              <td>'. $c .'</td>
-                              <td>'. $row['name'].'</td>
-                              <td>'. $row['sid'] .'</td>
-                              <td>'. $row['dept'].'</td>
-                              <td>'. $row['year'].'</td>
-                              <td><a href='."#".'><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">View</button></a></td>
-                            </tr>
-                        </tbody>';
-                        $c++;
-                  
-                      }
-                    }
-                    $data .='</table>';
-                    echo $data;
+									        	$new_name = $_GET['name'];
+									        	$new_sid = $_GET['sid'];
+									   	
+									        	$date = date("d/m/y");
+									        	$time = date("h:i:sa");
 
-                ?>
+		                                $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender', '$new_sid', '$new_name', '$msg', 'unread', '$date', '$time')");
+									        	if($s == 1)
+									        	{
+									        	    echo '<script>alert("massage Successfully Send");</script>';
+									        	    
+												  }
+												  else{
+												    echo '<script>alert("error Occured");</script>';
+												  }	
+									        		
+									        } 
 
-        
-              
+									        ?>
 
-
-               
-
-              
-         </div>
-      </div>
+									          
+									   
     <!-- /#page-content-wrapper -->
 
   </div>
@@ -139,3 +147,7 @@
 
   </body>
 </html>
+
+
+
+

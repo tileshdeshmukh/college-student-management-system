@@ -15,7 +15,6 @@
   <body>  
 
 <!-- nevbar -->
-<!-- nevbar -->
 <?php
   
     include('db.php');
@@ -52,8 +51,8 @@
                       Course Status
                     </a>
                     <div class="dropdown-menu text-uppercase">
-                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s; ?>">Add New Course</a>
-                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>">View Courses</a>
+                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s; ?>&eid=<?php echo $_GET['eid'];?>">Add New Course</a>
+                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>&eid=<?php echo $_GET['eid'];?>">View Courses</a>
                       <a class="dropdown-item" href="#"></a>
                     </div>
                   </li>
@@ -133,7 +132,7 @@
 
                         </div>
                           <div style="padding: 200px 50px 10px 100px">
-                            <p> You completed this course then click this buttom :  <button class="btn btn-primary my-2 my-sm-0" type="submit" name="comp" data-toggle="modal" data-target="#myModal1">Completed</button>
+                            <p>If you see the pro then click this buttom :  <button class="btn btn-primary my-2 my-sm-0" type="submit" name="comp" data-toggle="modal" data-target="#myModal1">Show Document</button>
                           </div>
 
                   
@@ -149,7 +148,7 @@
                                         
                                              
                                            <div class="modal-header btn-primary">
-                                                <h4 class="modal-title text-white" style="color:black">Upload File</h4>
+                                                <h4 class="modal-title text-white" style="color:black">Document</h4>
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                           </div>
                                           <div style="padding-left: 30px; padding-right: 30px">
@@ -157,9 +156,7 @@
                                                 <div class="modal-body bg-light">
 
                                                   <form action="view_c_details.php" method="post" enctype="multipart/form-data">
-                                                    <label>Select PDF or Image related to course completion :<br> (As a proof)</label>
-                                                    <br><br><input type="file" name="file" />
-                                                    <button class="btn btn-primary" type="submit" name="upload">upload</button>
+                                                   
                                                   <br>
 
                                                   </form>

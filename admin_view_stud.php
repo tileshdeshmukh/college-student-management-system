@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,9 +15,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>admin</title>
-    <style>
-      tr:hover{
-        background-color: #00181e;
+    <style type="text/css">
+     
+      .anker:hover{
+        color: white;
+        text-decoration: none;
       }
     </style>
   </head>
@@ -33,7 +41,7 @@
                   
                   
                 </ul>
-             <form class="form-inline my-2 my-lg-0" action="logout.php">
+             <form class="form-inline my-2 my-lg-0" action="logout.php"action="logout.php">
                 <button class="btn btn-outline-primary   my-2 my-sm-0" type="submit">Log-out</button>
             </form>
         </div>
@@ -63,60 +71,82 @@
          </div>
 
           <!-- Page Content -->
-
-
-             <div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
-              <center><h3 class="text-white text-primary"><?php echo $_GET['year'];?> STUDENT</h3></center>
-           
+         <div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
+              <center><h3 class="text-white text-primary">DASHBOARD</h3></center>
+              <hr class="bg-primary">
               <br>
-
-            
-
                   <?php
                   include('db.php');
-                  $data = '<table class="table text-white">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Name</th>
-                      <th>Saap ID</th>
-                      <th>Depatment</th>
-                      <th>Year</th>
-                      <th>Details</th>
-                    </tr>
-                  </thead>';
-
-                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '".$_GET['year']."'");
-                  if (mysqli_num_rows($sql) > 0) {
-              
-                  $c = 1;
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '1st year'");
+                  $c1 = 0;
                   while($row=mysqli_fetch_array($sql)) {
-                    $data .= '<tbody>
-                            <tr>
-                              <td>'. $c .'</td>
-                              <td>'. $row['name'].'</td>
-                              <td>'. $row['sid'] .'</td>
-                              <td>'. $row['dept'].'</td>
-                              <td>'. $row['year'].'</td>
-                              <td><a href='."#".'><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">View</button></a></td>
-                            </tr>
-                        </tbody>';
-                        $c++;
-                  
-                      }
-                    }
-                    $data .='</table>';
-                    echo $data;
+                    $c1++;
+                  }
+
 
                 ?>
 
-        
-              
+                <div class="row">
+                    <div class="col-md-3 px-5">
+                      <a href="all_stud.php?year=<?php echo '1st Year';?>" class="anker">
+                          <div style="width: 210px; height: 120px;" class="btn btn-outline-primary" >
+                          <h2 class="py-1"><?php echo $c1; ?></h2><h4>1st Year &nbsp;Students</h4>
+                      </a>
+                    </div>
+
+                    
+                     </div> 
+                   <div class="col-md-3 px-5">
+
+                            <?php
+                            include('db.php');
+                            $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '2nd Year' ");
+                            $c2 = 0;
+                            while($row=mysqli_fetch_array($sql)) {
+                              $c2++;
+                            }
+                            ?>
+                            <a href="all_stud.php?year=<?php echo '2nd Year';?>" class="anker">
+                            <div style="width: 210px; height: 120px;" class="btn btn-outline-primary">
+                                <h2 class="py-1"><?php echo $c2; ?></h2><h4>2nd Year Students</h4>
+                                  </a>
+                            </div>
+                    </div>
+
+                    <div class="col-md-3 px-5">
+                                                    <?php
+                            include('db.php');
+                            $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '3rd Year' ");
+                            $c3 = 0;
+                            while($row=mysqli_fetch_array($sql)) {
+                              $c3++;
+                            }
+                            ?>
+                            <a href="all_stud.php?year=<?php echo '3rd Year';?>" class="anker">
+                          <div style="width: 210px; height: 120px;" class="btn btn-outline-primary" >
+                              <h2 class="py-1"><?php echo $c3; ?></h2><h4>3rd Year Students</h4>
+                            </a>
+                          </div>
+                        </div>
 
 
-               
-
-              
+                    <div class="col-md-3 px-5">
+                                                  <?php
+                            include('db.php');
+                            $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '4th Year' ");
+                            $c4 = 0;
+                            while($row=mysqli_fetch_array($sql)) {
+                              $c4++;
+                            }
+                            ?>
+                            <a href="all_stud.php?year=<?php echo '4th Year';?>" class="anker">
+                            <div style="width: 210px; height: 120px;" class="btn btn-outline-primary" >
+                                <h2 class="py-1"><?php echo $c4; ?></h2><h4>4th Year Students</h4>
+                              </a>
+                            </div>
+              </div>
+            
+      </div>
          </div>
       </div>
     <!-- /#page-content-wrapper -->

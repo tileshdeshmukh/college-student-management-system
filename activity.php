@@ -16,7 +16,7 @@
 
 <!-- nevbar -->
 <?php
-   
+  
     include('db.php');
 
     
@@ -24,13 +24,14 @@
 
     while($row=mysqli_fetch_assoc($sql)){
     $s = $row['sid'];
-  }
+  
 ?>
-        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary fixed-true">
+
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary navbar-fixed-top">
             <img class="" src="logo.png" style="width: 3.5%; height: 1.8%">
-             <!-- <pre style="font-size: 10px; color: white;">   
-   SHRI VILE PARLE KELAVANI MANDAL
-  <b style="font-size: 17px; color: black;">Institute Of Technology,Dhule  </b></pre>  -->
+              <pre style="font-size: 12px; color: white;">   
+   Shri Vile Parle Kelavani Mandal
+  <b style="font-size: 17px; color: black;" class="text-uppercase">Institute Of Technology,Dhule  </b></pre> 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -38,31 +39,34 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                   <li class="nav-item active">
-                    <a class="nav-link" href="Profile.php?eid=<?php echo $_GET['eid'];?>">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-uppercase" href="Profile.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Home <span class="sr-only">(current)</span></a>
                   </li>
 
-                     <li class="nav-item active">
-                    <a class="nav-link" href="activity.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Activity <span class="sr-only">(current)</span></a>
+                  <li class="nav-item active">
+                    <a class="nav-link text-uppercase" href="activity.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Activity <span class="sr-only">(current)</span></a>
                   </li>
 
                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle " style="color: black" href="#" id="navbardrop" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle text-white text-uppercase" style="color: black" href="#" id="navbardrop" data-toggle="dropdown">
                       Course Status
                     </a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s ?>">Add New Course</a>
-                      <a class="dropdown-item" href="Viewc.php?s=<?php echo $s ?>">Course Details</a>
+                    <div class="dropdown-menu text-uppercase">
+                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s;?>&eid=<?php echo $_GET['eid'];?>">Add New Course</a>
+                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>&eid=<?php echo $_GET['eid'];?>">View Courses</a>
                       <a class="dropdown-item" href="#"></a>
                     </div>
                   </li>
                  
                 </ul>
-             <form class="form-inline my-2 my-lg-0">
+             <form class="form-inline my-2 my-lg-0" action="logout.php">
 
-               <a href="logout.php"><button class="btn btn-dark my-2 my-sm-0" type="submit">Log-out</button></a>
+               <a href="logout.php"><button class="btn btn-danger my-2 my-sm-0" type="submit">Log-out</button></a>
             </form>
         </div>
       </nav>
+      <?php
+    }
+    ?>
 
 <!-- My Profile -->
 <?php
@@ -87,7 +91,7 @@
                   <div class="card-body">
                       <h4 class="card-title"><p><?php echo $row['name']; ?></p></h4>
                       <h5><p class="card-text" style="color: blue"> <?php echo $row['email']; ?></p></h5>
-                    <a href="detail.php?eid=<?php echo $d; ?>" style="color: black"><button class="btn btn-primary "><b>View Details</b>  </button></a>
+                    <a href="detail.php?eid=<?php echo $row['id']; ?>" style="color: black"><button class="btn btn-primary "><b>View Details</b>  </button></a>
                   </div>
               </div>
             </div>
@@ -115,13 +119,14 @@ if(isset($_POST['add']))
 
   $title = $_POST['name'];
   $location= $_POST['loc'];
+  $date = $_POST['date'];
   $year = $_POST['yr'];
   $detail = $_POST['detl'];
   $work = $_POST['work'];
   $team = $_POST['team'];
 
 
-  $sql = mysqli_query($conn, "insert into activity(title, location, year, work_type, team, detail, name, sid) values('$title', '$location', '$year', '$work', '$team', '$detail', '$name', '$saap')");
+  $sql = mysqli_query($conn, "insert into activity(title, location, date, year, work_type, team, detail, name, sid) values('$title', '$location', '$date', '$year', '$work', '$team', '$detail', '$name', '$saap')");
   
 
   if($sql==1){
@@ -136,8 +141,10 @@ if(isset($_POST['add']))
 
     while($row=mysqli_fetch_assoc($sql))
     {
+    	$d = $row['id'];
     $name = $row['name'];
     $saap = $row['sid'];
+    
     
 
 ?>
@@ -162,7 +169,7 @@ if(isset($_POST['add']))
                       
                   </div>
         
-             <form action="activity.php?s=<?php echo $saap ?>" method="POST">
+             <form action="activity.php?s=<?php echo $saap?>&eid=<?php echo $_GET['eid']; ?>" method="POST">
                   
                  <div class="form-group">
                     <label>Title :</label>
@@ -171,6 +178,11 @@ if(isset($_POST['add']))
                   <div>
                    <label>Location :</label>
                     <input type="text" name="loc" class="form-control" placeholder="Enter full name" value="" required="required">
+                  </div>
+
+                   <div>
+                   <label>Date :</label>
+                    <input type="date" name="date" class="form-control" value="" required="required">
                   </div>
                
 
@@ -211,9 +223,9 @@ if(isset($_POST['add']))
         
              <!-- Modal footer -->
                 
-                 <a href="user.php"> <button type="submit" name="add" class="btn btn-primary">
+                  <button type="submit" name="add" class="btn btn-primary">
                     Add  
-                  </button></a>
+                  </button>
 
                 
 
@@ -261,7 +273,7 @@ if(isset($_POST['add']))
                                   <thead>
                                     <tr>
                                       <th>Titel</th>
-                                      <th>Location</th>
+                                      <th>Date</th>
                                       
                                       <th>Year</th>
                                       <th>View</th>
@@ -289,7 +301,7 @@ if(isset($_POST['add']))
                                               <tr>
 
                                                 <td><?php echo $row['title'];?></td>
-                                                <td><?php echo $row['location'];?></td>
+                                                <td><?php echo $row['date'];?></td>
                                                 
                                               <td><?php echo $row['year'];?></td>
                                               <td> <a href="view_activity.php?s=<?php echo $row['sid'];?>&eid=<?php echo $_GET['eid']; ?>&t=<?php echo $row['title'];?>"><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">View</button></a></td>

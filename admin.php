@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -35,7 +41,7 @@
                   
                   
                 </ul>
-             <form class="form-inline my-2 my-lg-0">
+             <form class="form-inline my-2 my-lg-0" action="logout.php"action="logout.php">
                 <button class="btn btn-outline-primary   my-2 my-sm-0" type="submit">Log-out</button>
             </form>
         </div>
@@ -49,7 +55,7 @@
           <div class="sidebar-heading bg-dark mt-1" style="color: "><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MENU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
               <div class="list-group list-group-flush text-center">
                     <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Dashboard</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Shortcuts</a>
+                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
@@ -163,3 +169,7 @@
 
   </body>
 </html>
+
+
+
+

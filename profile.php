@@ -1,3 +1,16 @@
+   	<?php 
+                  	include('db.php');
+                  	$c = "";
+                  	$dates = array();
+                  
+                  	$s = mysqli_query($conn, "select * from notification where status = 'unread' and sid = '".$_GET['s']."' ");
+                  	while ($r=mysqli_fetch_array($s)) {
+                  		
+                  		$dates[] = $r;
+     	             	$c++;
+                  }
+                  	?>
+
 <?php
 session_start();
 
@@ -16,6 +29,18 @@ session_start();
       <link rel="stylesheet" type="text/css" href="style.css">
 
     <title>Profile</title>
+    <style>
+    *{padding:0px; margin:0px;} 
+    	.imgup:hover
+    	{
+    		  
+  
+  
+  background-color: white;
+  box-shadow: 5px 5px 3px #aaaaaa;
+    	}
+
+    </style>
   </head>
   <body>  
 
@@ -32,40 +57,76 @@ session_start();
   
 ?>
 
-        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary fixed-true">
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary navbar-fixed-top">
             <img class="" src="logo.png" style="width: 3.5%; height: 1.8%">
-             <!-- <pre style="font-size: 10px; color: white;">   
-   SHRI VILE PARLE KELAVANI MANDAL
-  <b style="font-size: 17px; color: black;">Institute Of Technology,Dhule  </b></pre>  -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
+              <pre style="font-size: 12px; color: white;">   
+   Shri Vile Parle Kelavani Mandal
+  <b style="font-size: 17px; color: black;" class="text-uppercase">Institute Of Technology,Dhule  </b></pre> 
+               
+
+
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                   <li class="nav-item active">
-                    <a class="nav-link" href="Profile.php?eid=<?php echo $_GET['eid'];?>">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-uppercase" href="Profile.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $date['sid']; ?>">Home <span class="sr-only">(current)</span></a>
+                  </li>
+
+<!-- Notification -->
+                  <li class="nav-item dropdown">
+
+                    <a class="nav-link text-uppercase" style="color: white" href="#" id="navbardrop" data-toggle="dropdown">
+                      Notification
+                    
+                     	 <span class="badge badge-danger"><?php echo $c;?></span>
+
+                      
+                  	</a>
+  
+                    <div class="dropdown-menu">
+                     <?php 
+                     	foreach ($dates as $date) {
+                     		
+                     	
+                     ?>
+                      <a class="dropdown-item" href="msg_view.php?s=<?php echo $date['sid']; ?>&id=<?php echo $date['id']; ?>">
+                      
+                      	<small><i><?php echo 'Date :'.$date['date'];?> 	</i></small><br>
+                      	<p><?php echo $date['sender'] ?></p>
+
+                      </a>
+                  <?php } ?>
+                      	<div class="dropdown-divider">
+                      
+
+                      	</div>
+                    </div>
+                   
                   </li>
 
                   <li class="nav-item active">
-                    <a class="nav-link" href="activity.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Activity <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-uppercase" href="activity.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Activity <span class="sr-only">(current)</span></a>
                   </li>
 
                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle " style="color: black" href="#" id="navbardrop" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle text-white text-uppercase pr-5" style="color: black" href="#" id="navbardrop" data-toggle="dropdown">
                       Course Status
                     </a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s; ?>">Add New Course</a>
-                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>">View Courses</a>
+                    <div class="dropdown-menu text-uppercase">
+                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s;?>&eid=<?php echo $_GET['eid'];?>">Add New Course</a>
+                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>&eid=<?php echo $_GET['eid'];?>">View Courses</a>
                       <a class="dropdown-item" href="#"></a>
                     </div>
                   </li>
                  
                 </ul>
-             <form class="form-inline my-2 my-lg-0">
+                <?php
+            
+            ?>
 
-               <a href="logout.php"><button class="btn btn-dark my-2 my-sm-0" type="submit">Log-out</button></a>
+             <form class="form-inline my-2 my-lg-0" action="logout.php">
+
+               <a href="logout.php"><button class="btn btn-danger my-2 my-sm-0" type="submit">Log-out</button></a>
             </form>
         </div>
       </nav>
@@ -106,12 +167,20 @@ session_start();
             <hr style="color: blue">            
             <p class="mx-5">We are an academic college made up of students, scholars, old collegians and staff members. Our rich history is the foundation for our values. We are diverse, welcoming, accepting and passionate about being the best we can be. Join us to make your college experience unforgettable.</p>
 
-            <hr style="color: blue">
+			<br><br><br>	            
 
-            <div class="pl-5 mx-3"><img src="logo/civ.png" style="width: 80px; height: 100px"><img src="logo/mach.png" style="width: 80px; height: 100px"><img src="logo/co.png" style="width: 170px; height: 120px"><img src="logo/et.jpg" style="width: 80px; height: 100px"><img src="logo/it.png" style="width: 80px; height: 100px"></div>
+            <div class="mx-2">
+            	<img src="logo/civ.png"  class="pl-2 imgup" style="width: 120px; height: 100px">
+            	<img src="logo/mach.png" class="pl-2 imgup" style="width: 120px; height: 100px">
+            	<img src="logo/co.png"  class="pl-2 imgup" style="width: 120px; height: 100px">
+            	<img src="logo/et.jpg" class="pl-2 imgup" style="width: 120px; height: 100px">
+            	<img src="logo/it.png" class="pl-2 imgup" style="width: 120px; height: 100px"></div>
+        <hr style="color: blue">
+         <div class="text-center "><a href="{% http://www.svkm-iot.ac.in/ %}" class="untracked">http://www.svkm-iot.ac.in/</a></div>
           </div>
 
     </div>
+
 
 </div>
 <?php
@@ -126,3 +195,12 @@ session_start();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+

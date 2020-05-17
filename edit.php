@@ -27,11 +27,11 @@
   
 ?>
 
-        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary fixed-true">
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary navbar-fixed-top">
             <img class="" src="logo.png" style="width: 3.5%; height: 1.8%">
-             <!-- <pre style="font-size: 10px; color: white;">   
-   SHRI VILE PARLE KELAVANI MANDAL
-  <b style="font-size: 17px; color: black;">Institute Of Technology,Dhule  </b></pre>  -->
+              <pre style="font-size: 12px; color: white;">   
+   Shri Vile Parle Kelavani Mandal
+  <b style="font-size: 17px; color: black;" class="text-uppercase">Institute Of Technology,Dhule  </b></pre> 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -39,17 +39,18 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                   <li class="nav-item active">
-                    <a class="nav-link" href="Profile.php?eid=<?php echo $_GET['eid'];?>">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-uppercase" href="Profile.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Home <span class="sr-only">(current)</span></a>
                   </li>
+
                   <li class="nav-item active">
-                    <a class="nav-link" href="activity.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Activity <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-uppercase" href="activity.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Activity <span class="sr-only">(current)</span></a>
                   </li>
 
                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle " style="color: black" href="#" id="navbardrop" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle text-white text-uppercase" style="color: black" href="#" id="navbardrop" data-toggle="dropdown">
                       Course Status
                     </a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu text-uppercase">
                       <a class="dropdown-item" href="addcourse.php?s=<?php echo $s; ?>">Add New Course</a>
                       <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>">View Courses</a>
                       <a class="dropdown-item" href="#"></a>
@@ -59,13 +60,14 @@
                 </ul>
              <form class="form-inline my-2 my-lg-0">
 
-               <a href="logout.php"><button class="btn btn-dark my-2 my-sm-0" type="submit">Log-out</button></a>
+               <a href="logout.php"><button class="btn btn-danger my-2 my-sm-0" type="submit">Log-out</button></a>
             </form>
         </div>
       </nav>
       <?php
     }
     ?>
+
 
 <!-- My Profile -->
 <?php
@@ -89,7 +91,7 @@
                   <div class="card-body">
                       <h4 class="card-title"><p><?php echo $row['name']; ?></p></h4>
                       <h5><p class="card-text" style="color: blue"> <?php echo $row['email']; ?></p></h5>
-                    <a href="detail.php?eid=<?php echo $d; ?>" style="color: black"><button class="btn btn-outline-primary "><b>View Details</b>  </button></a>
+                    <a href="detail.php?eid=<?php echo $d; ?>" style="color: black"><button class="btn btn-primary "><b>View Details</b>  </button></a>
                   </div>
               </div>
         </div>
@@ -104,7 +106,7 @@
                     include('db.php');
                    
                    
-                    $sql = mysqli_query($conn, "select * from registration where id = '".$_GET['eid']."' ");
+                    $sql = mysqli_query($conn, "select * from registration where id = '".$d."' ");
 
                     while($row=mysqli_fetch_assoc($sql)){
                     
@@ -123,7 +125,7 @@
 
       
         <!-- Modal Header -->
-           <div class="modal-header btn-dark">
+           <div class="modal-header btn-primary">
               <h4 class="modal-title text-white">Edit Details</h4>
               
            </div>
@@ -131,7 +133,7 @@
         <!-- Modal body -->
            <div class="modal-body bg-light">
         
-             <form action="update.php?ed=<?php echo $d ?>" method="POST">
+             <form action="update.php?eid=<?php echo $d;?>" method="POST">
                  <div class="form-group">
                     <label>Full Name :</label>
                     <input type="text" name="name" class="form-control" placeholder="Enter full name" value="<?php echo $name?>" required="">
@@ -187,12 +189,12 @@
           
         
              <!-- Modal footer -->
-                <div class="modal-footer bg-dark">
-                  <button type="submit" name="sub" class="btn btn-primary">
+                <div class="modal-footer bg-primary">
+                  <a href="update.php?eid=<?php echo $d;?>"><button type="submit" name="sub" class="btn btn-dark">
                     Update  
-                  </button>
+                  </button></a>
 
-                  <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger ml-auto" data-dismiss="modal">Close</button>
                 </div>
 
             </form>
@@ -209,15 +211,6 @@
    </div>
 
 
-
-
-
-           <!--  <img src="temp.jpg" class="" style="width: 65%; height: 70%; border:  2px solid black;">     
-            
-                <h4 class="title"><p><?php echo $row['name']; ?></p></h4>
-                <h5><p style="color: blue"> <?php echo $row['email']; ?></p></h5>
-                
-              <a href="detail.php?eid=<?php echo $d; ?>" style="color: black"><button class="btn btn-outline-primary "><b>View Details</b>  </button></a> -->
 
             
             

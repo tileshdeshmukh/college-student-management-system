@@ -1,9 +1,9 @@
 <?php  
 	include('db.php');
 
+$d = $_GET['eid'];
 
-
-if(isset($_POST['update']))
+if(isset($_POST['sub']))
 {
 
 	 
@@ -19,15 +19,16 @@ if(isset($_POST['update']))
 		 
  	 
 
- 	 $result= "UPDATE registration SET name='".$name."', number='".$nu."', address='".$add."', bdate='".$bdate."', year='".$year."',saap='".$saap."',email='".$email."' WHERE id='".$_GET['ed']."'";
+ 	 $result= "UPDATE registration SET name='".$name."', number='".$nu."', address='".$add."', bdate='".$bdate."', year='".$year."', sid='".$saap."',email='".$email."' WHERE id='".$d."'";
 
- 	 /*$msql = mysqli_query($conn, $result);*/
+ 	 $sql = mysqli_query($conn, $result);
 
- 	 if($msql = mysqli_query($conn, $result)
-)
+ 	 if($sql)
+
  	 {
-    	echo '<script>alert("Data Successfully UPDATE");</script>';
-    	/*header("location:detail.php");*/
+ 	 	 echo '<script>alert("Data Updated");</script>';
+
+    	
  	 }
   	 else
   	 {
@@ -35,12 +36,8 @@ if(isset($_POST['update']))
 
  	 }
 }
-else
-{
 
- 	header("location:detail.php");
-}
-
+header('location:detail.php?eid='.$d);
 
 ?>
 

@@ -20,8 +20,7 @@
 
 
 
-
-
+<!-- nevbar -->
 <?php
   
     include('db.php');
@@ -33,12 +32,12 @@
     $s = $row['sid'];
   
 ?>
-<!-- nevbar -->
- <nav class="navbar navbar-expand-lg  navbar-dark bg-primary fixed-true">
+
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary navbar-fixed-top">
             <img class="" src="logo.png" style="width: 3.5%; height: 1.8%">
-             <!-- <pre style="font-size: 10px; color: white;">   
-   SHRI VILE PARLE KELAVANI MANDAL
-  <b style="font-size: 17px; color: black;">Institute Of Technology,Dhule  </b></pre>  -->
+              <pre style="font-size: 12px; color: white;">   
+   Shri Vile Parle Kelavani Mandal
+  <b style="font-size: 17px; color: black;" class="text-uppercase">Institute Of Technology,Dhule  </b></pre> 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -46,35 +45,34 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                   <li class="nav-item active">
-                    <a class="nav-link" href="Profile.php?eid=<?php echo $_GET['eid'];?>">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-uppercase" href="Profile.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Home <span class="sr-only">(current)</span></a>
                   </li>
 
                   <li class="nav-item active">
-                    <a class="nav-link" href="activity.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Activity <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-uppercase" href="activity.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>">Activity <span class="sr-only">(current)</span></a>
                   </li>
 
                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle " style="color: black" href="#" id="navbardrop" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle text-white text-uppercase" style="color: black" href="#" id="navbardrop" data-toggle="dropdown">
                       Course Status
                     </a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s; ?>">Add New Course</a>
-                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>">View Courses</a>
+                    <div class="dropdown-menu text-uppercase">
+                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s;?>&eid=<?php echo $_GET['eid'];?>">Add New Course</a>
+                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>&eid=<?php echo $_GET['eid'];?>">View Courses</a>
                       <a class="dropdown-item" href="#"></a>
                     </div>
                   </li>
                  
                 </ul>
-             <form class="form-inline my-2 my-lg-0">
+             <form class="form-inline my-2 my-lg-0" action="logout.php">
 
-               <a href="logout.php"><button class="btn btn-dark my-2 my-sm-0" type="submit">Log-out</button></a>
+               <a href="logout.php"><button class="btn btn-danger my-2 my-sm-0" type="submit">Log-out</button></a>
             </form>
         </div>
       </nav>
       <?php
     }
     ?>
-
 
 
 

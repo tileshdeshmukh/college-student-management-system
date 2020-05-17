@@ -99,16 +99,26 @@ if(isset($_POST['sub']))
     $q = mysqli_query($conn, "select * from registration where email='".$user."' && pass='".$pass."' limit 1");
     $row = mysqli_fetch_array($q);
 
-    $idd = $row['id'];
+    
     if(is_array($row))
     {
-       header("location:profile.php?eid=$idd");
+        $idd = $row['id'];
+        $sid = $row['sid'];
+       header("location:profile.php?eid=$idd&s=$sid");
        
     }
     else
     {
+        
+        if($user == "admin@gmail.com" && $pass == "admin")
+        {
+           header("location:admin.php");
+           
+        }
+        
         echo '<script>alert("Pliz Enter Valide Entry");</script>';
-    } 
+          
+      } 
   }
 ?>
 
