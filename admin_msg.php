@@ -23,7 +23,7 @@ session_start();
       }
     </style>
   </head>
-  <body>
+  <body class="bg-dark">
 
 
         <nav class="navbar navbar-expand-lg  navbar-dark bg-dark navbar-fixed">
@@ -52,21 +52,16 @@ session_start();
 
     <!-- Sidebar -->
        <div>
-          <div class="sidebar-heading bg-dark mt-1" style="color: "><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MENU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
+       
               <div class="list-group list-group-flush text-center">
                     <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Dashboard</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
+                    <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white"></a>
+                   
               </div>
          </div>
 
@@ -120,11 +115,56 @@ session_start();
 <!-- onclick select year Button -->
 
 
+
+
+
 <?php 
            include('db.php');
            if (isset($_POST['btn_year'])) {
            		$syear = $_POST['yr'];
            ?>
+           
+
+
+           	 <center><h3 class="text-white text-primary">Send Massage</h3></center>
+              <hr class="bg-primary">
+            <div class="container-fluid" style="padding: 30px 30px 30px 30px; background-color: black;">
+             
+              <br>
+              <div class="container-fluid mx-5 px-5">
+                   <form action="admin_msg_year.php?y=<?php echo $syear?>" method="POST">
+			            <div class="form-group">
+							<p class="text-white"> Massage send to <b><?php echo $syear; ?></b></p>
+							<div classs="form-group text-white">
+							<label class="text-white">Sender Name :</label>
+			                 <input type="text" name="sender_name" class="form-control bg-dark text-white" placeholder="Sender name" required="" style="width:54%">			
+
+			                 </div>
+			                 <div class="form-group text-white">
+                 			<label>Massage :</label><br>
+                    		<textarea class="bg-dark text-white" name="msg" rows="8" cols="75" required="required"></textarea>
+              				</div>
+				         </div>
+								
+
+	
+
+
+									      
+			          <button type="submit" name="sub" class="btn btn-primary" name="send">Send</button>
+			          <a href="admin_msg.php"><button type="button" class="btn btn-danger mr-auto" >Close</button></a>
+			</div>
+									    
+
+	</form>
+</div>
+
+
+
+
+
+
+
            <table class="table table-hover text-left text-white">
                                   <thead>
                                     <tr>
@@ -141,11 +181,11 @@ session_start();
                                         
                                         include('db.php');
                                        
-                                       
+                                       	$new_sid = array();
                                         $sql = mysqli_query($conn, "select * from registration where year = '".$syear."'");
 
                                         while($row=mysqli_fetch_array($sql)){
-                                        
+                                       
                                   
                                       
                                         ?>
@@ -155,7 +195,7 @@ session_start();
                                           <head>
                                             <tbody>
                                               <tr>
-
+                                              	<?php  $new_sid[] = $row; ?>
                                                 <td><?php echo $row['name'];?></td>
                                                 <td><?php echo $row['sid'];?></td>
                                                 
@@ -174,10 +214,10 @@ session_start();
 
 
                                   <?php 
+                                  
                               }
 
                               ?>
-
 
 
 

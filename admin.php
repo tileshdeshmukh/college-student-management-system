@@ -23,7 +23,7 @@ session_start();
       }
     </style>
   </head>
-  <body>
+  <body class="bg-dark">
 
 
         <nav class="navbar navbar-expand-lg  navbar-dark bg-dark fixed-true">
@@ -52,21 +52,15 @@ session_start();
 
     <!-- Sidebar -->
        <div>
-          <div class="sidebar-heading bg-dark mt-1" style="color: "><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MENU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
+         
               <div class="list-group list-group-flush text-center">
                     <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Dashboard</a>
                    <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
+                    <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
+                   
               </div>
          </div>
 
@@ -75,6 +69,7 @@ session_start();
               <center><h3 class="text-white text-primary">DASHBOARD</h3></center>
               <hr class="bg-primary">
               <br>
+               <form action="admin.php" method="POST">
                   <?php
                   include('db.php');
                   $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '1st year'");
@@ -87,16 +82,16 @@ session_start();
                 ?>
 
                 <div class="row">
-                    <div class="col-md-3 px-5">
-                      <a href="all_stud.php?year=<?php echo '1st Year';?>" class="anker">
-                          <div style="width: 210px; height: 120px;" class="btn btn-outline-primary" >
-                          <h2 class="py-1"><?php echo $c1; ?></h2><h4>1st Year &nbsp;Students</h4>
-                      </a>
+                    <div class="col-md-3 px-3">
+                    	  <button class="btn btn-outline-primary" name="y1">
+                        	  <div style="width: 200px; height: 110px;" >
+                          		<h2 class="py-1"><?php echo $c1; ?></h2><h4>1st Year &nbsp;Students</h4></div>
+                      	</button>
                     </div>
 
                     
-                     </div> 
-                   <div class="col-md-3 px-5">
+                     
+                   <div class="col-md-3 px-3">
 
                             <?php
                             include('db.php');
@@ -106,14 +101,15 @@ session_start();
                               $c2++;
                             }
                             ?>
-                            <a href="all_stud.php?year=<?php echo '2nd Year';?>" class="anker">
-                            <div style="width: 210px; height: 120px;" class="btn btn-outline-primary">
-                                <h2 class="py-1"><?php echo $c2; ?></h2><h4>2nd Year Students</h4>
-                                  </a>
-                            </div>
+                      	<button class="btn btn-outline-primary" name="y2">
+                            <div style="width: 200px; height: 110px;" >
+                        	        <h2 class="py-1"><?php echo $c2; ?></h2><h4>2nd Year Students</h4>
+                            </div> 
+                        </button>
+                            
                     </div>
 
-                    <div class="col-md-3 px-5">
+                    <div class="col-md-3 px-3">
                                                     <?php
                             include('db.php');
                             $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '3rd Year' ");
@@ -122,15 +118,15 @@ session_start();
                               $c3++;
                             }
                             ?>
-                            <a href="all_stud.php?year=<?php echo '3rd Year';?>" class="anker">
-                          <div style="width: 210px; height: 120px;" class="btn btn-outline-primary" >
-                              <h2 class="py-1"><?php echo $c3; ?></h2><h4>3rd Year Students</h4>
-                            </a>
-                          </div>
-                        </div>
+                        <button class="btn btn-outline-primary" name="y3">
+                          	<div style="width: 200px; height: 110px;"  >
+                            	  <h2 class="py-1"><?php echo $c3; ?></h2><h4>3rd Year Students</h4>
+                          	</div>
+                         </button>
+                    </div>
 
 
-                    <div class="col-md-3 px-5">
+                    <div class="col-md-3 px-3">
                                                   <?php
                             include('db.php');
                             $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '4th Year' ");
@@ -139,23 +135,267 @@ session_start();
                               $c4++;
                             }
                             ?>
-                            <a href="all_stud.php?year=<?php echo '4th Year';?>" class="anker">
-                            <div style="width: 210px; height: 120px;" class="btn btn-outline-primary" >
+                      <button class="btn btn-outline-primary" name="y4">
+                            <div style="width: 200px; height: 110px;" >
                                 <h2 class="py-1"><?php echo $c4; ?></h2><h4>4th Year Students</h4>
-                              </a>
-                            </div>
-              </div>
+                     		</div>
+                      </button>
+           		   </div>
             
-      </div>
+     			</div>
+     		</form>
+
+
+
+
+<br>
+<?php 
+
+include('db.php');
+if (isset($_POST['y1'])) {
+	
+?>
+<div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
+              <center><h3 class="text-white text-danger">1st YEAR STUDENT</h3></center><br></div>
+ <table class="table table-hover text-left text-white">
+                                
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Saap ID</th>
+                      <th>Depatment</th>
+                      <th>Year</th>
+                      
+                    </tr>
+                  </thead>
+
+                        
+                    <?php
+                                        
+                   include('db.php');
+                                                                      
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '1st Year' ");
+                  if (mysqli_num_rows($sql) > 0) {
+              
+                  $c = 1;
+                  while($row=mysqli_fetch_array($sql)) {
+                                              
+                                              
+                                  
+                                      
+                                        ?>
+                                        <div class="pr-5">
+
+                                          
+                                          <head>
+                                            <tbody>
+                                              <tr>
+                                              	<td><?php echo $c;?></td>	
+                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['sid'];?></td>
+                                                <td><?php echo $row['dept'];?></td>
+                                              <td><?php echo $row['year'];?></td>
+
+                                            
+                          					 
+
+                                               </tr>
+
+                                            </tbody>
+                                          </head>
+
+                                        </div>
+           
+<?php } } }?>
+
+
+<?php 
+
+include('db.php');
+if (isset($_POST['y2'])) {
+	
+?>
+
+<div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
+              <center><h3 class="text-white text-danger">2nd YEAR STUDENT</h3></center><br></div>
+ <table class="table table-hover text-left text-white">
+                                
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Saap ID</th>
+                      <th>Depatment</th>
+                      <th>Year</th>
+                     
+                    </tr>
+                  </thead>
+
+                        
+                    <?php
+                                        
+                   include('db.php');
+                                                                      
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '2nd Year' ");
+                  if (mysqli_num_rows($sql) > 0) {
+              
+                  $c = 1;
+                  while($row=mysqli_fetch_array($sql)) {
+                                              
+                                              
+                                  
+                                      
+                                        ?>
+                                        <div class="pr-5">
+
+                                          
+                                          <head>
+                                            <tbody>
+                                              <tr>
+                                              	<td><?php echo $c;?></td>	
+                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['sid'];?></td>
+                                                <td><?php echo $row['dept'];?></td>
+                                              <td><?php echo $row['year'];?></td>
+
+                                         
+
+                                               </tr>
+
+                                            </tbody>
+                                          </head>
+
+                                        </div>
+           
+<?php } } }?>
+
+<?php 
+
+include('db.php');
+if (isset($_POST['y3'])) {
+	
+?>
+
+<div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
+              <center><h3 class="text-white text-danger">3rd YEAR STUDENT</h3></center><br></div>
+ <table class="table table-hover text-left text-white">
+                                
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Saap ID</th>
+                      <th>Depatment</th>
+                      <th>Year</th>
+                     
+                    </tr>
+                  </thead>
+
+                        
+                    <?php
+                                        
+                   include('db.php');
+                                                                      
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '3rd Year' ");
+                  if (mysqli_num_rows($sql) > 0) {
+              
+                  $c = 1;
+                  while($row=mysqli_fetch_array($sql)) {
+                                              
+                                              
+                                  
+                                      
+                                        ?>
+                                        <div class="pr-5">
+
+                                          
+                                          <head>
+                                            <tbody>
+                                              <tr>
+                                              	<td><?php echo $c;?></td>	
+                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['sid'];?></td>
+                                                <td><?php echo $row['dept'];?></td>
+                                              <td><?php echo $row['year'];?></td>
+
+                                         
+
+                                               </tr>
+
+                                            </tbody>
+                                          </head>
+
+                                        </div>
+           
+<?php } } }?>
+
+<?php 
+
+include('db.php');
+if (isset($_POST['y4'])) {
+	
+?>
+<div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
+              <center><h3 class="text-white text-danger">4th YEAR STUDENT</h3></center><br></div>
+ <table class="table table-hover text-left text-white">
+                                
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Saap ID</th>
+                      <th>Depatment</th>
+                      <th>Year</th>
+                     
+                    </tr>
+                  </thead>
+
+                        
+                    <?php
+                                        
+                   include('db.php');
+                                                                      
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '4th Year' ");
+                  if (mysqli_num_rows($sql) > 0) {
+              
+                  $c = 1;
+                  while($row=mysqli_fetch_array($sql)) {
+                                              
+                                              
+                                  
+                                      
+                                        ?>
+                                        <div class="pr-5">
+
+                                          
+                                          <head>
+                                            <tbody>
+                                              <tr>
+                                              	<td><?php echo $c;?></td>	
+                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['sid'];?></td>
+                                                <td><?php echo $row['dept'];?></td>
+                                              <td><?php echo $row['year'];?></td>
+
+                                         
+
+                                               </tr>
+
+                                            </tbody>
+                                          </head>
+
+                                        </div>
+           
+<?php } } }?>
+
+
+
+
+
+
          </div>
       </div>
     <!-- /#page-content-wrapper -->
 
   </div>
-
-
- </div>
-</div>
+</body>
 
 
 

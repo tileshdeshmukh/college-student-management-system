@@ -23,7 +23,7 @@ session_start();
       }
     </style>
   </head>
-  <body>
+  <body class="bg-dark">
 
 
         <nav class="navbar navbar-expand-lg  navbar-dark bg-dark fixed-true">
@@ -52,21 +52,15 @@ session_start();
 
     <!-- Sidebar -->
        <div>
-          <div class="sidebar-heading bg-dark mt-1" style="color: "><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MENU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
+         
               <div class="list-group list-group-flush text-center">
                     <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Dashboard</a>
                    <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
+                    <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
+                
               </div>
          </div>
 

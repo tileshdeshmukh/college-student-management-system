@@ -15,7 +15,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="bg-dark">
 
 
         <nav class="navbar navbar-expand-lg  navbar-dark bg-dark fixed-true">
@@ -44,21 +44,17 @@
 
     <!-- Sidebar -->
        <div>
-          <div class="sidebar-heading bg-dark mt-1" style="color: "><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MENU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></div>
+      
               <div class="list-group list-group-flush text-center">
                     <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Dashboard</a>
+                    <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Shortcuts</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                    <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark">&nbsp;</a>
+                   
               </div>
          </div>
 
@@ -66,16 +62,16 @@
 
 
              <div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
-              <center><h3 class="text-white text-primary"><?php echo $_GET['year'];?> STUDENT</h3></center>
+              <center><h3 class="text-white text-primary">ALL STUDENT</h3></center>
            
               <br>
 
             
 
-                  <?php
-                  include('db.php');
-                  $data = '<table class="table text-white">
-                  <thead>
+
+
+              <table class="table table-hover text-left text-white">
+                                
                     <tr>
                       <th>No</th>
                       <th>Name</th>
@@ -84,32 +80,174 @@
                       <th>Year</th>
                       <th>Details</th>
                     </tr>
-                  </thead>';
+                  </thead>
 
-                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '".$_GET['year']."'");
+                        
+                    <?php
+                                        
+                   include('db.php');
+                                                                      
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '1st Year' ");
                   if (mysqli_num_rows($sql) > 0) {
               
                   $c = 1;
                   while($row=mysqli_fetch_array($sql)) {
-                    $data .= '<tbody>
-                            <tr>
-                              <td>'. $c .'</td>
-                              <td>'. $row['name'].'</td>
-                              <td>'. $row['sid'] .'</td>
-                              <td>'. $row['dept'].'</td>
-                              <td>'. $row['year'].'</td>
-                              <td><a href='."#".'><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">View</button></a></td>
-                            </tr>
-                        </tbody>';
-                        $c++;
+                                              
+                                              
+                                  
+                                      
+                                        ?>
+                                        <div class="pr-5">
+
+                                          
+                                          <head>
+                                            <tbody>
+                                              <tr>
+                                              	<td><?php echo $c;?></td>	
+                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['sid'];?></td>
+                                                <td><?php echo $row['dept'];?></td>
+                                              <td><?php echo $row['year'];?></td>
+
+                                             <td><a href='admin_profile.php?eid=<?php echo $row['id'];?>&s=<?php echo $row['sid'];?>'><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">View</button></a></td>
+                          					 
+
+                                               </tr>
+
+                                            </tbody>
+                                          </head>
+
+                                        </div>
+           
+<?php $c++; } }?>
+
+
+
+ <?php
+                                        
+                   include('db.php');
+                                                                      
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '2nd Year' ");
+                  if (mysqli_num_rows($sql) > 0) {
+              
                   
-                      }
-                    }
-                    $data .='</table>';
-                    echo $data;
+                  while($row=mysqli_fetch_array($sql)) {
+                                              
+                                              
+                                  
+                                      
+                                        ?>
+                                        <div class="pr-5">
 
-                ?>
+                                          
+                                          <head>
+                                            <tbody>
+                                              <tr>
+                                              	<td><?php echo $c;?></td>	
+                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['sid'];?></td>
+                                                <td><?php echo $row['dept'];?></td>
+                                              <td><?php echo $row['year'];?></td>
 
+                                             <td><a href='admin_profile.php?eid=<?php echo $row['id'];?>&s=<?php echo $row['sid'];?>'><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">View</button></a></td>
+                          					 
+
+                                               </tr>
+
+                                            </tbody>
+                                          </head>
+
+                                        </div>
+           
+<?php $c++; } }?>
+
+
+ <?php
+                                        
+                   include('db.php');
+                                                                      
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '3rd Year' ");
+                  if (mysqli_num_rows($sql) > 0) {
+              
+                  
+                  while($row=mysqli_fetch_array($sql)) {
+                                              
+                                              
+                                  
+                                      
+                                        ?>
+                                        <div class="pr-5">
+
+                                          
+                                          <head>
+                                            <tbody>
+                                              <tr>
+                                              	<td><?php echo $c;?></td>	
+                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['sid'];?></td>
+                                                <td><?php echo $row['dept'];?></td>
+                                              <td><?php echo $row['year'];?></td>
+
+                                             <td><a href='admin_profile.php?eid=<?php echo $row['id'];?>&s=<?php echo $row['sid'];?>'><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">View</button></a></td>
+                          					 
+
+                                               </tr>
+
+                                            </tbody>
+                                          </head>
+
+                                        </div>
+           
+<?php $c++; } }?>
+
+
+
+ <?php
+                                        
+                   include('db.php');
+                                                                      
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '4th Year' ");
+                  if (mysqli_num_rows($sql) > 0) {
+              
+                  
+                  while($row=mysqli_fetch_array($sql)) {
+                                              
+                                              
+                                  
+                                      
+                                        ?>
+                                        <div class="pr-5">
+
+                                          
+                                          <head>
+                                            <tbody>
+                                              <tr>
+                                              	<td><?php echo $c;?></td>	
+                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['sid'];?></td>
+                                                <td><?php echo $row['dept'];?></td>
+                                              <td><?php echo $row['year'];?></td>
+
+                                             <td><a href='admin_profile.php?eid=<?php echo $row['id'];?>&s=<?php echo $row['sid'];?>'><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">View</button></a></td>
+                          					 
+
+                                               </tr>
+
+                                            </tbody>
+                                          </head>
+
+                                        </div>
+           
+<?php $c++; } }?>
+
+
+
+
+
+
+
+              
+                
         
               
 
