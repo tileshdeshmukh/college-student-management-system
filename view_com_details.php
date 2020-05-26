@@ -11,6 +11,12 @@
       <link rel="stylesheet" type="text/css" href="style.css">
 
     <title>Profile</title>
+    <style>
+      .imgclass{
+        width: 90%;
+        height: 80%;
+      }
+    </style>
   </head>
   <body>  
 
@@ -27,7 +33,7 @@
   
 ?>
 
-        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary navbar-fixed-top">
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary fixed-top">
             <img class="" src="logo.png" style="width: 3.5%; height: 1.8%">
               <pre style="font-size: 12px; color: white;">   
    Shri Vile Parle Kelavani Mandal
@@ -80,13 +86,14 @@
     while($row=mysqli_fetch_assoc($sql)){
     $d = $row['id'];
 ?>
-<div class="container my-4">
+<br><br>
+<div class="container my-4 pt-5 mt-5">
     <div class="row">
   <!-- Self Profile -->
         <div class="col-lg-4 col-md-4 col-sm-2 col-2 text-center bg-light py-3">
 
-              <div class="card mx-4" style="width:300px">
-                   <img class="card-img-top" src="temp.jpg" alt="Card image" style="width:100%">
+              <div class="card mx-5">
+                   <img class="card-img-top pb-3" src="img/<?php echo $row['img']; ?>" alt="Card image">
                   <div class="card-body">
                       <h4 class="card-title"><p><?php echo $row['name']; ?></p></h4>
                       <h5><p class="card-text" style="color: blue"> <?php echo $row['email']; ?></p></h5>
@@ -151,11 +158,18 @@
                                                 <h4 class="modal-title text-white" style="color:black">Document</h4>
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                           </div>
-                                          <div style="padding-left: 30px; padding-right: 30px">
+                                          <div style="padding-left: 30px">
                                   <!-- Modal body -->
                                                 <div class="modal-body bg-light">
+                                                  <?php
+                                                    include('db.php');
+                                                    $qq = mysqli_query($conn, "select * from course where id = '".$_GET['id']."'");
+                                                    while ($rr = mysqli_fetch_assoc($qq)) {
+                                                      $img = $rr['file'];
+                                                    }
+                                                  ?>
 
-                                                  <form action="view_c_details.php" method="post" enctype="multipart/form-data">
+                                                  <img src="uploads/<?php echo $img; ?>" class="imgclass">
                                                    
                                                   <br>
 

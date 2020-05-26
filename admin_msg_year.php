@@ -14,7 +14,7 @@
 									        	$coun = "";
                                         while($row=mysqli_fetch_array($sql)){
                                        
-		                                $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender', '".$row['sid']."', '', '$msg', 'unread', '$date', '$time')");
+		                                $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender', '".$row['sid']."', '".$row['name']."', '$msg', 'unread', '$date', '$time')");
 									        	$coun++;
 		                            }
 									        	if($coun > 0)

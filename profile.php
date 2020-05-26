@@ -1,3 +1,5 @@
+  
+
    	<?php 
                   	include('db.php');
                   	$c = "";
@@ -86,20 +88,19 @@ session_start();
                     <div class="dropdown-menu">
                      <?php 
                      	foreach ($dates as $date) {
-                     		
+                     	if ($date) {
+                        
+                        	
                      	
                      ?>
                       <a class="dropdown-item" href="msg_view.php?s=<?php echo $date['sid']; ?>&id=<?php echo $date['id']; ?>">
                       
                       	<small><i><?php echo 'Date :'.$date['date'];?> 	</i></small><br>
                       	<p><?php echo $date['sender'] ?></p>
-
+                        
                       </a>
-                  <?php } ?>
-                      	<div class="dropdown-divider">
+                  <?php } }?>
                       
-
-                      	</div>
                     </div>
                    
                   </li>
@@ -147,11 +148,11 @@ session_start();
 ?>
 <div class="container my-4">
     <div class="row">
-  <!-- Self Profile -->
+  <!-- Self Profile --> 
         <div class="col-lg-4 col-md-4 col-sm-2 col-2 text-center bg-light py-3">
 
-              <div class="card mx-4" style="width:300px">
-                   <img class="card-img-top" src="temp.jpg" alt="Card image" style="width:100%">
+              <div class="card mx-5">
+                   <img class="card-img-top pb-3" src="img/<?php echo $row['img']; ?>" alt="Card image">
                   <div class="card-body">
                       <h4 class="card-title"><p><?php echo $row['name']; ?></p></h4>
                       <h5><p class="card-text" style="color: blue"> <?php echo $row['email']; ?></p></h5>
@@ -170,18 +171,22 @@ session_start();
 			<br><br><br>	            
 
             <div class="mx-2">
-            	<img src="logo/civ.png"  class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/mach.png" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/co.png"  class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/et.jpg" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/it.png" class="pl-2 imgup" style="width: 120px; height: 100px"></div>
+            	<img src="logo/civ.png" data-toggle="tooltip" title="Civil-Eng(Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
+            	<img src="logo/mach.png" data-toggle="tooltip" title="SESA (Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
+            	<img src="logo/co.png" data-toggle="tooltip" title="Computer-Eng(Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
+            	<img src="logo/et.jpg" data-toggle="tooltip" title="Electrical-(Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
+            	<img src="logo/it.png" data-toggle="tooltip" title="IT-Eng (Logo)" class="pl-2 imgup" style="width: 120px; height: 100px"></div>
         <hr style="color: blue">
          <div class="text-center "><a href="{% http://www.svkm-iot.ac.in/ %}" class="untracked">http://www.svkm-iot.ac.in/</a></div>
           </div>
 
     </div>
 
-
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
 </div>
 <?php
 }
@@ -195,12 +200,3 @@ session_start();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-

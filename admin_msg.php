@@ -55,7 +55,7 @@ session_start();
        
               <div class="list-group list-group-flush text-center">
                     <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Dashboard</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
+                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Message</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
                     <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
@@ -67,7 +67,7 @@ session_start();
 
           <!-- Page Content -->
     <div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
-              <center><h3 class="text-white text-primary">Massage To Student</h3></center>
+              <center><h3 class="text-white text-primary">Message To Student</h3></center>
               <hr class="bg-primary">
               <br>
 
@@ -91,7 +91,7 @@ session_start();
            		<form action="admin_msg.php" method="POST">
            			      <div class="form-group pr-5 mr-5">
          
-                 <select type="text" name="yr" class="form-control" placeholder="choce.." required="required">
+                 <select type="text" name="yr" class="form-control bg-dark text-white" placeholder="choce.." required="required">
                       <option>Select Year...</option>
                     <option> 1st Year </option>
                     <option> 2nd Year</option>

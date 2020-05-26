@@ -28,7 +28,7 @@
   
 ?>
 
-        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary navbar-fixed-top">
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary fixed-top">
             <img class="" src="logo.png" style="width: 3.5%; height: 1.8%">
               <pre style="font-size: 12px; color: white;">   
    Shri Vile Parle Kelavani Mandal
@@ -65,6 +65,7 @@
             </form>
         </div>
       </nav>
+    <br><br><br><br>
       <?php
     }
     ?>
@@ -88,8 +89,8 @@
   <!-- Self Profile -->
         <div class="col-lg-4 col-md-4 col-sm-2 col-2 text-center bg-light py-3">
 
-              <div class="card mx-4" style="width:300px">
-                   <img class="card-img-top" src="temp.jpg" alt="Card image" style="width:100%">
+              <div class="card mx-5">
+                   <img class="card-img-top pb-3" src="img/<?php echo $row['img']; ?>" alt="Card image">
                   <div class="card-body">
                       <h4 class="card-title"><p><?php echo $row['name']; ?></p></h4>
                       <h5><p class="card-text" style="color: blue"> <?php echo $row['email']; ?></p></h5>
@@ -117,15 +118,18 @@ if(isset($_POST['add']))
     $name = $row['name'];
     $saap = $row['sid'];
     $email = $row['email'];
+    $year = $row['year'];
 }
 
   $cname = $_POST['name'];
   $sname= $_POST['subname'];
   $cid = $_POST['cid'];
+  $date = $_POST['date'];
   $status = $_POST['ts'];
   $path = $_POST['path'];
 
-  $sql = mysqli_query($conn, "insert into course(cname,sub_name, cid, status, path, name, sid, email) values('$cname', '$sname', '$cid', '$status', '$path', '$name', '$saap', '$email')");
+
+  $sql = mysqli_query($conn, "insert into course(cname,sub_name, cid, date, status, path, name, sid, year, email, file, msg) values('$cname', '$sname', '$cid', '$date', '$status', '$path', '$name', '$saap', '$year', '$email', 'null', 'unread')");
   
 
   if($sql==1){
@@ -143,6 +147,7 @@ if(isset($_POST['add']))
     $d = $row['id'];
     $name = $row['name'];
     $saap = $row['sid'];
+    $year = $row['year'];
     
 
 ?>
@@ -176,6 +181,11 @@ if(isset($_POST['add']))
                  <div class="form-group">
                     <label>Course ID :</label>
                     <input type="text" name="cid" class="form-control" placeholder="Enter Number" value="" required="required">
+                </div>
+
+                 <div class="form-group">
+                    <label>Starting Date :</label>
+                    <input type="date" name="date" class="form-control" placeholder="MM/DD/YYYY" value="" required="required">
                 </div>
 
                  <div class="form-group">

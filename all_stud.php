@@ -13,6 +13,12 @@
       tr:hover{
         background-color: #00181e;
       }
+        thead:hover{
+        color: white;
+      }
+  tbody:hover{
+        background-color: white;
+      }
     </style>
   </head>
   <body class="bg-dark">
@@ -71,7 +77,7 @@
 
 
               <table class="table table-hover text-left text-white">
-                                
+                    <thead>            
                     <tr>
                       <th>No</th>
                       <th>Name</th>
@@ -124,12 +130,13 @@
 
 
  <?php
+
                                         
                    include('db.php');
-                                                                      
+                                                                       
                   $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '2nd Year' ");
                   if (mysqli_num_rows($sql) > 0) {
-              
+                  $c = $c;
                   
                   while($row=mysqli_fetch_array($sql)) {
                                               
@@ -163,13 +170,14 @@
 
 
  <?php
+ 
                                         
                    include('db.php');
                                                                       
                   $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '3rd Year' ");
                   if (mysqli_num_rows($sql) > 0) {
               
-                  
+                   $c = $c;
                   while($row=mysqli_fetch_array($sql)) {
                                               
                                               
@@ -203,12 +211,12 @@
 
 
  <?php
-                                        
+                                     
                    include('db.php');
                                                                       
                   $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '4th Year' ");
                   if (mysqli_num_rows($sql) > 0) {
-              
+               $c = $c;
                   
                   while($row=mysqli_fetch_array($sql)) {
                                               

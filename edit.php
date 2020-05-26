@@ -27,7 +27,7 @@
   
 ?>
 
-        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary navbar-fixed-top">
+        <nav class="navbar navbar-expand-lg  navbar-dark bg-primary fixed-top">
             <img class="" src="logo.png" style="width: 3.5%; height: 1.8%">
               <pre style="font-size: 12px; color: white;">   
    Shri Vile Parle Kelavani Mandal
@@ -51,8 +51,8 @@
                       Course Status
                     </a>
                     <div class="dropdown-menu text-uppercase">
-                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s; ?>">Add New Course</a>
-                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>">View Courses</a>
+                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s; ?>&eid=<?php echo $_GET['eid'];?>">Add New Course</a>
+                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>&eid=<?php echo $_GET['eid'];?>">View Courses</a>
                       <a class="dropdown-item" href="#"></a>
                     </div>
                   </li>
@@ -81,13 +81,14 @@
 
       $d = $row['id'];
 ?>
-<div class="container my-4">
+<br><br>
+<div class="container my-4 pt-5">
     <div class="row">
   <!-- Self Profile -->
         <div class="col-lg-4 col-md-4 col-sm-2 col-2 text-center bg-light py-3">
 
-              <div class="card mx-4" style="width:300px">
-                   <img class="card-img-top" src="temp.jpg" alt="Card image" style="width:100%">
+             <div class="card mx-5">
+                   <img class="card-img-top pb-3" src="img/<?php echo $row['img']; ?>" alt="Card image">
                   <div class="card-body">
                       <h4 class="card-title"><p><?php echo $row['name']; ?></p></h4>
                       <h5><p class="card-text" style="color: blue"> <?php echo $row['email']; ?></p></h5>
@@ -194,7 +195,7 @@
                     Update  
                   </button></a>
 
-                  <button type="button" class="btn btn-danger ml-auto" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger ml-auto"><a href="detail.php?eid=<?php echo $d; ?>" class="text-white ">Close</a></button>
                 </div>
 
             </form>

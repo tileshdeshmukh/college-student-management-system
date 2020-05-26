@@ -1,4 +1,7 @@
 <?php
+
+
+
 include('db.php');
 if(isset($_POST['sub']))
 {
@@ -12,13 +15,19 @@ if(isset($_POST['sub']))
   $email = $_POST['email'];
   $pass = $_POST['ps'];
 
-  $image = $_FILES['image']['name'];
+  $target_dir = "img/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
-  $target = "img/".basename($image);
+  $image = $_FILES["fileToUpload"]["name"];
+
+  
 
   $sql = mysqli_query($conn, "insert into registration(name, number, address, bdate, dept, year, sid, email, pass, img) values('$name','$nu','$add','$bdate','$dept','$year','$saap','$email','$pass','$image')");
   
-  if(move_uploaded_file($_FILES['image']['tmp_name'],$target))
+  if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file))
   {
     echo '<script>alert("Data Successfully entered");</script>';
   }
@@ -138,10 +147,10 @@ if(isset($_POST['sub']))
         <!-- Modal body -->
         <div class="modal-body bg-light">
         
-        <form action="index.php" method="POST">
+        <form action="index.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                  <label>Full Name :</label>
-                 <input type="text" name="name" class="form-control" placeholder="Enter full name" required="">
+                 <input type="text" name="name" class="form-control" placeholder="Enter full name" required="required" >
             </div>
             <div class="form-group">
                 <label>Mob.Number :</label>
@@ -192,19 +201,19 @@ if(isset($_POST['sub']))
             </div>
              <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="text" name="ps" class="form-control" id="exampleInputPassword1" required="required" placeholder="password">
+                <input type="Password" name="ps" class="form-control" id="exampleInputPassword1" required="required" placeholder="password">
              </div>
           
               <div class="form-group">
                 <label for="exampleFormControlFile1">Image:</label>
                 <br>
-               <input type="hidden" name="size" value="1000000" >
-              <input type="file" name="image" >
+               <input type="file" name="fileToUpload" id="fileToUpload" required="required">
+                
             </div>
         
         <!-- Modal footer -->
         <div class="modal-footer bg-dark">
-          <button type="submit" name="sub" class="btn btn-primary">Submit</button>
+          <input type="submit" name="sub" value="Submit" class="btn btn-primary" />
 
           <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Close</button>
         </div>

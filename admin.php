@@ -1,7 +1,21 @@
 <?php
 session_start();
 
-?>
+                    include('db.php');
+                    $c = "";
+                    $dates = array();
+                  
+                    $s = mysqli_query($conn, "select * from course where msg= 'unread'  ");
+                    while ($r=mysqli_fetch_array($s)) {
+                      
+                      $dates[] = $r;
+                    $c++;
+                  }
+                    ?>
+
+
+
+
 
 
 <!doctype html>
@@ -13,13 +27,21 @@ session_start();
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <!-- Add Icon Link -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>admin</title>
     <style type="text/css">
      
       .anker:hover{
         color: white;
         text-decoration: none;
+      }
+       thead:hover{
+        color: white;
+      }
+  tbody:hover{
+        background-color: white;
       }
     </style>
   </head>
@@ -36,17 +58,64 @@ session_start();
                 <span class="navbar-toggler-icon"></span>
                 </button>
 
+
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                   
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link pr-5" style="color: white; padding-left: 50px;" href="#" id="navbardrop" data-toggle="dropdown"><i class="material-icons" style="font-size:25px">notifications   </i>
+
+
+                <span class="badge badge-danger"><?php echo $c;?></span>
+
+
+              </a>
+              <div class="px-5">
+              <div class="dropdown-menu">
+                     <?php 
+                      foreach ($dates as $date) {
+                        
+                      if ($date) {
+                        
+                      
+                     ?> 
+                      <a class="dropdown-item" href="notification.php?id=<?php echo $date['id']; ?>">
+                    
+                        
+                    <i> <b> <?php echo $date['name'];?></b> Add New Course  </i><br>
+                       <!--  <p><?php echo $date['sender'] ?></p> -->
+
+                      </a>
+                  <?php }else{ echo 'Empty';} 
+                 } ?>
+                 
+                    </div>
+                   </div>
+                   </form>
+              </li></ul>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                   
-                </ul>
+              
+              <li class="nav-item dropdown">
              <form class="form-inline my-2 my-lg-0" action="logout.php"action="logout.php">
+
+              
+                </form>
+              </li></ul>
                 <button class="btn btn-outline-primary   my-2 my-sm-0" type="submit">Log-out</button>
             </form>
         </div>
       </nav>
 
+<!-- Notification Module -->
+
+
+
+
+<!-- end Notification -->
 
       <div class="d-flex" id="wrapper">
 
@@ -59,7 +128,7 @@ session_start();
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
                     <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                    <a href="admin_status.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
                    
               </div>
          </div>

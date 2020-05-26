@@ -52,8 +52,8 @@
                       Course Status
                     </a>
                     <div class="dropdown-menu text-uppercase">
-                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s; ?>">Add New Course</a>
-                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>">View Courses</a>
+                      <a class="dropdown-item" href="addcourse.php?s=<?php echo $s; ?>&eid=<?php echo $_GET['eid'];?>">Add New Course</a>
+                      <a class="dropdown-item" href="viewc.php?s=<?php echo $s; ?>&eid=<?php echo $_GET['eid'];?>">View Courses</a>
                       <a class="dropdown-item" href="#"></a>
                     </div>
                   </li>
@@ -86,8 +86,8 @@
   <!-- Self Profile -->
         <div class="col-lg-4 col-md-4 col-sm-2 col-2 text-center bg-light py-3">
 
-              <div class="card mx-4" style="width:300px">
-                   <img class="card-img-top" src="temp.jpg" alt="Card image" style="width:100%">
+              <div class="card mx-5">
+                   <img class="card-img-top pb-3" src="img/<?php echo $row['img']; ?>" alt="Card image">
                   <div class="card-body">
                       <h4 class="card-title"><p><?php echo $row['name']; ?></p></h4>
                       <h5><p class="card-text" style="color: blue"> <?php echo $row['email']; ?></p></h5>
@@ -156,10 +156,11 @@
                                   <!-- Modal body -->
                                                 <div class="modal-body bg-light">
 
-                                                  <form action="view_c_details.php" method="post" enctype="multipart/form-data">
-                                                    <label>Select PDF or Image related to course completion :<br> (As a proof)</label>
-                                                    <br><br><input type="file" name="file" />
-                                                    <button class="btn btn-primary" type="submit" name="upload">upload</button>
+                                                  <form action="view_c_details.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $s; ?>&id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
+                                                    <label>Select (Certificate) Image related to course completion :<br> (As a proof)</label>
+                                                    <br><br>
+                                                     <input type="file" name="fileToUpload" id="fileToUpload" required="required">
+                                                     <input type="submit" value="Upload Image" name="up"  class="btn btn-primary">
                                                   <br>
 
                                                   </form>
@@ -180,6 +181,59 @@
     </div>
 
 </div>
+
+
+
+
+<?php
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+// Check if image file is a actual image or fake image
+if(isset($_POST['up'])) {
+  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  if($check !== false) {
+    echo '<script>alert("File is an image : '. $check["mime"] .' ");</script>';
+    $uploadOk = 1;
+  } else {
+    echo '<script>alert("File is not an image.");</script>';
+    $uploadOk = 0;
+  }
+}
+
+/*// Check if file already exists
+if (file_exists($target_file)) {
+  echo '<script>alert("Sorry, file already exists.");</script>';
+  $uploadOk = 0;
+}
+
+
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+  echo '<script>alert("Sorry, only JPG, JPEG, PNG & GIF files are allowed.");</script>';
+  $uploadOk = 0;
+}
+*/
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+  echo '<script>alert("Sorry, your file was not uploaded.");</script>';
+// if everything is ok, try to upload file
+} else {
+  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    $qq = mysqli_query($conn, "update course set file= '".$_FILES["fileToUpload"]["name"]."', status = 'Completed' where id = '".$_GET['id']."' ");
+
+  
+    echo '<script>alert("The file '. basename( $_FILES["fileToUpload"]["name"]). ' has been uploaded.");</script>';
+    
+  } else {
+    /*echo '<script>alert("Sorry, there was an error uploading your file.");</script>';*/
+  }
+}
+?>
 
 
     <!-- Optional JavaScript -->
