@@ -35,6 +35,52 @@ session_start();
 
 ?>
 
+
+
+
+<?php
+include('db.php');
+ 
+if(isset($_POST['add']))
+{
+    $ns = $_GET['s'];
+    $neid = $_GET['eid'];
+     $nid = $_GET['id'];
+   $sql = mysqli_query($conn, "select * from registration where sid = '".$_GET['s']."' ");
+
+    while($row=mysqli_fetch_assoc($sql))
+    {
+    $name = $row['name'];
+    $saap = $row['sid'];
+    $email = $row['email'];
+    $year = $row['year'];
+}
+
+  $cname = $_POST['name'];
+  $sname= $_POST['subname'];
+  $cid = $_POST['cid'];
+  $date = $_POST['date'];
+  $status = $_POST['ts'];
+  $path = $_POST['path'];
+  $mark = $_POST['compin'];
+
+
+  $sql = mysqli_query($conn, "insert into course(cname,sub_name, marks, cid, date, status, path, name, sid, year, email, file, msg) values('$cname', '$sname', '$mark' '$cid', '$date', '$status', '$path', '$name', '$saap', '$year', '$email', 'null', 'unread')");
+  
+
+  if($sql==1){
+
+    $up1=mysqli_query($conn, "UPDATE c_stud SET status = 'ok' WHERE id = '".$_GET['id']."' ");
+  
+  }
+  else{
+    echo '<script>alert("error Occured");</script>';
+  }
+}
+?>
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -46,6 +92,9 @@ session_start();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
       <link rel="stylesheet" type="text/css" href="style.css">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Profile</title>
     <style>
@@ -61,6 +110,9 @@ session_start();
       .bs{
         border-radius: 50%;
         font-size: 10px;
+      }
+      .b{
+        box-shadow: 2px 3px 3px 1px;
       }
     </style>
   </head>
@@ -91,7 +143,7 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                   <li class="nav-item active">
-                    <a class="nav-link text-uppercase" href="Profile.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $date['sid']; ?>">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-uppercase" href="Profile.php?eid=<?php echo $_GET['eid'];?>&s=<?php echo $row['sid']; ?>">Home <span class="sr-only">(current)</span></a>
                   </li>
 
 <!-- Notification -->
@@ -140,6 +192,7 @@ session_start();
                      
                     </div>
                   </li>
+
                  
                 </ul>
                 <?php
@@ -181,38 +234,68 @@ session_start();
                   </div>
               </div> 
             
-        </div>
+        </div> <?php } ?>
 
           <div class="col-lg-7 col-md-7 col-sm-5 col-6 bg-light py-3">
+            <center><h4>New Courses</h4></center>
+            <hr style="color: 1px solid blue">
 
-            <center><img src="logo/svkm.png" style="width: 350px; height: 80px"></center>
-            <hr style="color: blue">            
-            <p class="mx-5">We are an academic college made up of students, scholars, old collegians and staff members. Our rich history is the foundation for our values. We are diverse, welcoming, accepting and passionate about being the best we can be. Join us to make your college experience unforgettable.</p>
 
-			<br><br><br>	            
+            <section>
 
-            <div class="mx-2">
-            	<img src="logo/civ.png" data-toggle="tooltip" title="Civil-Eng(Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/mach.png" data-toggle="tooltip" title="SESA (Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/co.png" data-toggle="tooltip" title="Computer-Eng(Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/et.jpg" data-toggle="tooltip" title="Electrical-(Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/it.png" data-toggle="tooltip" title="IT-Eng (Logo)" class="pl-2 imgup" style="width: 120px; height: 100px"></div>
-        <hr style="color: blue">
-         <div class="text-center "><a href="{% http://www.svkm-iot.ac.in/ %}" class="untracked">http://www.svkm-iot.ac.in/</a></div>
-          </div>
+           
+            <?php
 
-    </div>
 
-<script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();   
-});
-</script>
-</div>
+
+
+  
+                    include('db.php');
+                
+                  
+                    $ss1 = mysqli_query($conn, "select * from c_stud where status = 'unok' and sid = '".$_GET['s']."' ");
+                    while ($rr1=mysqli_fetch_array($ss1)) {
+                    ?>  
+
+                 
+              <a href="new_c_view.php?id=<?php echo $rr1['id'] ?>&eid=<?php echo $_GET['eid'];?>&s=<?php echo $_GET['s']; ?>" style="text-decoration: none">
+                <div class=" p-2 b"> 
+                  <small class="text-dark">Date :<?php echo $rr1['date']; ?>
+                    <span class="pl-2 text-danger">
+                      <?php 
+                        if($rr1['comp'] == 'yes')
+                          {
+                            echo 'Compulsory'; ?>
+                            <i class="fa fa-certificate" style="font-size:12px;color:red"></i>
+                            <?php
+                          } 
+                      ?> 
+                      </span>
+                    </small>
+                    <br>
+
+                <b><?php echo $rr1['select_c'] ?> 
+                <?php echo $rr1['e_course'] ?><b>
+              </div>  
+              </a>  
+
+              <br>
 <?php
-}
+                  } 
+                    
+
+
 ?>
 
+
+
+
+</section>
+  </div></div>
+
+          
+
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -220,4 +303,6 @@ $(document).ready(function(){
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
-</html>
+
+
+

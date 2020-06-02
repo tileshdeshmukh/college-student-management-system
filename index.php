@@ -5,6 +5,8 @@
 include('db.php');
 if(isset($_POST['sub']))
 {
+  $ct = "";
+  $ct1 = "";
   $name = $_POST['name'];
   $nu = $_POST['nu'];
   $add = $_POST['ad'];
@@ -23,17 +25,40 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
   $image = $_FILES["fileToUpload"]["name"];
 
-  
+  $qq = mysqli_query($conn, "select * from entry");
+  while ($a = mysqli_fetch_array($qq)) {
+    if($email == $a['email']){
+          $ct = 1;
 
-  $sql = mysqli_query($conn, "insert into registration(name, number, address, bdate, dept, year, sid, email, pass, img) values('$name','$nu','$add','$bdate','$dept','$year','$saap','$email','$pass','$image')");
+
+          $qqq = mysqli_query($conn, "select * from registration");
+          while ($aa = mysqli_fetch_array($qqq)) {
+          if($saap == $aa['sid'] or $email == $aa['email']){
+            $ct1 = 2;
+              }}
+
+              if($ct1 == 2)
+              {
+                  echo '<script>alert("data already exists");</script>';          
+              }
+              else{
+          $sql = mysqli_query($conn, "insert into registration(name, number, address, bdate, dept, year, sid, email, pass, img) values('$name','$nu','$add','$bdate','$dept','$year','$saap','$email','$pass','$image')");
   
-  if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file))
-  {
-    echo '<script>alert("Data Successfully entered");</script>';
-  }
-  else{
-    echo '<script>alert("error Occured");</script>';
-  }
+          if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file))
+          {
+            echo '<script>alert("Data Successfully entered");</script>';
+          }
+          else{
+              echo '<script>alert("error Occured");</script>';
+          }
+
+        }
+        
+        
+      }
+
+    }
+    if($ct == 0){ echo '<script>alert("No Permission!");</script>'; }
 
 
 }
@@ -45,6 +70,7 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 <html lang="en">
   <head>
     <!-- Required meta tags -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -56,21 +82,22 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
     <title>Login</title>
 
 <style type="text/css">
-  body{
-    width: 90%;
-  height: auto;
-  margin: auto;
-  padding: auto;
+  .bb{
+    width: 100%;
+  height: 100vh;
  
-  background: url(bg.png);
+  
+  
+  background-image: url('bg.png');
   background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 </style>
 
   </head>
   <body class="bod">
-<div class="row">
+<div class="row bb">
     <div class="Box col-lg-6 col-md-6 col-10">
        <h2>Login</h2>
     <form action="index.php" method="POST">
@@ -154,7 +181,7 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             </div>
             <div class="form-group">
                 <label>Mob.Number :</label>
-                <input type="Number" name="nu" class="form-control" placeholder="Enter Number" required="required">
+           <input type="Number" id="phone" name="nu" class="form-control" placeholder="Enter Number"  maxlength="10"  pattern="[0-9]{10}" required="required">
             </div>
 
             <div class="form-group">
@@ -228,8 +255,26 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 </div>
 
 </div>
+<script type="text/javascript">
+  $("#phone").keydown(function(event) {
+  k = event.which;
+  if ((k >= 96 && k <= 105) || k == 8) {
+    if ($(this).val().length == 10) {
+      if (k == 8) {
+        return true;
+      } else {
+        event.preventDefault();
+        return false;
 
+      }
+    }
+  } else {
+    event.preventDefault();
+    return false;
+  }
 
+});
+</script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

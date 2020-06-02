@@ -1,37 +1,67 @@
 <?php
-					              include('db.php');
-							      if (isset($_POST['sub'])) 
-							      {
-									       	$sender = $_POST['sender_name'];
-									        	$msg = $_POST['msg'];
+	      include('db.php');
+	    if (isset($_POST['sub'])) 
+	      {
+		$sender = $_POST['sender_name'];
+		$msg = $_POST['msg'];
+	$year = $_GET['y'];
+   	
+       	$date = date("d/m/y");
+     	$time = date("h:i:sa");
+    	$sql = mysqli_query($conn, "select * from registration where year = '".$year."'");
+        	$coun = "";
+	while($row=mysqli_fetch_array($sql)){
+                                       										
 
-									    		$year = $_GET['y'];
-									   	
-									        	$date = date("d/m/y");
-									        	$time = date("h:i:sa");
+	
+	
+	$username = "dtilesh@gmail.com";
+	$hash = "044f18f91acd76a64a4474cf0437724c539776dae973b160b59bf692c3e264f4";
 
-									        	$sql = mysqli_query($conn, "select * from registration where year = '".$year."'");
-									        	$coun = "";
-                                        while($row=mysqli_fetch_array($sql)){
-                                       
-		                                $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender', '".$row['sid']."', '".$row['name']."', '$msg', 'unread', '$date', '$time')");
-									        	$coun++;
-		                            }
-									        	if($coun > 0)
-									        	{
-									        	    echo '<script>alert("massage Successfully Send");</script>';
+	
+	$test = "0";
+
+	
+	$sender = "TXTLCL"; // This is who the message appears to be from.
+	$numbers = $row['number']; // A single number or a comma-seperated list of numbers
+	$message = $msg;
+	
+	
+	$message = urlencode($message);
+	$data = "username=".$username."&hash=".$hash."&message=".$message."&sender=".$sender."&numbers=".$numbers."&test=".$test;
+	$ch = curl_init('http://api.textlocal.in/send/?');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($ch); // This is the result from the API
+	curl_close($ch);
+
+
+
+
+
+
+
+
+
+
+	 $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender', '".$row['sid']."', '".$row['name']."', '$msg', 'unread', '$date', '$time')");
+  	$coun++;
+	 }
+	if($coun > 0)
+    	{
+    	    echo '<script>alert("massage Successfully Send");</script>';
 
 									        	    
-												  }
-												  else{
-												    echo '<script>alert("error Occured");</script>';
-												  }	
+	  }
+	  else{
+	  echo '<script>alert("error Occured");</script>';
+	 }	
 
 									        		
-									        } 
+     } 
 
-
-									        ?>
+    ?>
 
 
 

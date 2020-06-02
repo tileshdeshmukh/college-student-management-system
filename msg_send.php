@@ -104,6 +104,32 @@ session_start();
 									   	
 									        	$date = date("d/m/y");
 									        	$time = date("h:i:sa");
+						$ss=mysqli_query($conn, "select * from registration where sid = '".$new_sid."' ");
+						while($rr = mysqli_fetch_array($ss)){
+							
+	// Authorisation details.
+	$username = "dtilesh@gmail.com";
+	$hash = "044f18f91acd76a64a4474cf0437724c539776dae973b160b59bf692c3e264f4";
+
+	// Config variables. Consult http://api.textlocal.in/docs for more info.
+	$test = "0";
+
+	// Data for text message. This is the text message data.
+	$sender = "TXTLCL"; // This is who the message appears to be from.
+	$numbers = $rr['number']; // A single number or a comma-seperated list of numbers
+	$message = $msg;
+	// 612 chars or less
+	// A single number or a comma-seperated list of numbers
+	$message = urlencode($message);
+	$data = "username=".$username."&hash=".$hash."&message=".$message."&sender=".$sender."&numbers=".$numbers."&test=".$test;
+	$ch = curl_init('http://api.textlocal.in/send/?');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$result = curl_exec($ch); // This is the result from the API
+	curl_close($ch);
+
+						}
 
 		                                $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender', '$new_sid', '$new_name', '$msg', 'unread', '$date', '$time')");
 									        	if($s == 1)

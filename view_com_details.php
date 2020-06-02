@@ -130,11 +130,12 @@
 
                     <h3>View Course Details [  <?php echo $row['cname'];?> ]</h3>
                     <hr style="color: blue">
-                    <div class="mx-5">
+                    <div class="ml-5">
                         <b>Name :</b> <?php echo $row['cname'];?> <br>
                         <b>Subject Name :</b> <?php echo $row['sub_name'];?> <br>
                         <b>ID :</b> <?php echo $row['cid'];?> <br>
                         <b>Path :</b> <?php echo $row['path'];?> <br>
+                        <b>Marks :</b><?php echo $row['marks']; ?><br>
                         <b>Status :</b> <?php echo $row['status'];?> <br>
 
                         </div>

@@ -54,20 +54,18 @@ session_start();
        <div>
        
               <div class="list-group list-group-flush text-center">
-                    <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Dashboard</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Message</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
+             <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">  Dashboard_Home </a>
+                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
+                    <a href="admin_courses.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Courses</a>
+                    <a href="admin_marks.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">View Marks</a>
                     <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white"></a>
-                   
               </div>
          </div>
 
           <!-- Page Content -->
     <div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
-              <center><h3 class="text-white text-primary">Message To Student</h3></center>
+              <a href="admin_status.php"><button type="submit" name="ss" class="btn btn-outline-success">Course Status</button></a><center><h3 class="text-white text-primary">Message To Student</h3></center>
               <hr class="bg-primary">
               <br>
 

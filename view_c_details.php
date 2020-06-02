@@ -150,6 +150,7 @@
                                              
                                            <div class="modal-header btn-primary">
                                                 <h4 class="modal-title text-white" style="color:black">Upload File</h4>
+
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                           </div>
                                           <div style="padding-left: 30px; padding-right: 30px">
@@ -160,6 +161,9 @@
                                                     <label>Select (Certificate) Image related to course completion :<br> (As a proof)</label>
                                                     <br><br>
                                                      <input type="file" name="fileToUpload" id="fileToUpload" required="required">
+                                               <br> <label>Enter Marks (%) :</label>
+                                                <input type="number" name="mk" class="form-control" placeholder="Enter Marks">                                                   
+                                                <br>
                                                      <input type="submit" value="Upload Image" name="up"  class="btn btn-primary">
                                                   <br>
 
@@ -186,6 +190,8 @@
 
 
 <?php
+include('db.php');
+
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -193,6 +199,8 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 // Check if image file is a actual image or fake image
 if(isset($_POST['up'])) {
+  $mm = $_POST['mk'];
+  
   $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
   if($check !== false) {
     echo '<script>alert("File is an image : '. $check["mime"] .' ");</script>';
@@ -224,10 +232,14 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    $qq = mysqli_query($conn, "update course set file= '".$_FILES["fileToUpload"]["name"]."', status = 'Completed' where id = '".$_GET['id']."' ");
+    $qq = mysqli_query($conn, "update course set file= '".$_FILES["fileToUpload"]["name"]."', status = 'Completed', marks = '".$mm."' where id = '".$_GET['id']."' ");
 
   
     echo '<script>alert("The file '. basename( $_FILES["fileToUpload"]["name"]). ' has been uploaded.");</script>';
+    $neid = $_GET['eid'];
+    $ns = $_GET['s'];
+
+    header("location:viewc.php?eid=$neid&s=$ns");
     
   } else {
     /*echo '<script>alert("Sorry, there was an error uploading your file.");</script>';*/
