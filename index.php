@@ -88,7 +88,7 @@ $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
  
   
   
-  background-image: url('bg.png');
+  background-image: url('bg3.jpg');
   background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

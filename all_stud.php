@@ -53,12 +53,12 @@
       
             <div class="list-group list-group-flush text-center">
                     <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">  Dashboard_Home </a>
-                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
+                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Message</a>
                     <a href="admin_courses.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Courses</a>
                     <a href="admin_marks.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">View Marks</a>
                     <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
-                   
+                    <a href="admin_status_ch.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                   <a href="pie.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Pie Chart</a>
               </div>
          </div>
 
@@ -66,6 +66,11 @@
 
 
              <div class="container-fluid " style="padding: 30px 30px 30px 30px; background-color: black;">
+               <form class="form-inline pr-5 mr-5" action="all_stud.php" method="POST" >
+      <input class="form-control mr-sm-2 w-50" name="search" type="search" placeholder="Search name.." aria-label="Search" required="required">
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" name="ser" data-toggle="modal" data-target="#exampleModal">Search</button>
+  
+    </form><br>
               <center><h3 class="text-white text-primary">ALL STUDENT</h3></center>
            
               <br>
@@ -80,7 +85,7 @@
                       <th>No</th>
                       <th>Name</th>
                       <th>Saap ID</th>
-                      <th>Depatment</th>
+                      <th>Department</th>
                       <th>Year</th>
                       <th>Details</th>
                     </tr>
@@ -90,11 +95,11 @@
                     <?php
                                         
                    include('db.php');
-                                                                      
+                  $c = 1;                                                    
                   $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '1st Year' ");
                   if (mysqli_num_rows($sql) > 0) {
               
-                  $c = 1;
+                  
                   while($row=mysqli_fetch_array($sql)) {
                                               
                                               
@@ -131,10 +136,10 @@
 
                                         
                    include('db.php');
-                                                                       
+                  $c = $c;                                                     
                   $sql = mysqli_query($conn, "SELECT * FROM  registration WHERE year = '2nd Year' ");
                   if (mysqli_num_rows($sql) > 0) {
-                  $c = $c;
+                  
                   
                   while($row=mysqli_fetch_array($sql)) {
                                               
@@ -271,7 +276,74 @@
  </div>
 </div>
 
+<!-- <div class="container"> 
 
+      <?php 
+
+        include('db.php');
+        if (isset($_POST['ser'])) {
+        $s = $_POST['search'];
+          
+        ?>
+        <div class="px-5">
+              <center><h3 class="text-white text-danger">All ATKT STUDENT</h3></center><br></div>
+               <table class="table table-hover text-left">
+                     <thead>            
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Saap ID</th>
+                      <th>Department</th>
+                      <th>Year</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+
+                        
+                    <?php
+                                        
+                   include('db.php');
+                                                                      
+                  $sql = mysqli_query($conn, "SELECT * FROM  registration where name LIKE '%".$s."%' ");
+                  if (mysqli_num_rows($sql) >= 1) {
+              
+                  $c = 1;
+                  while($row=mysqli_fetch_array($sql)) {
+                                              
+                                              
+                                  
+                                      
+                  ?>
+                                      
+
+                                          
+<div class="pr-5">
+
+                                          
+                                          <head>
+                                            <tbody>
+                                              <tr>
+                                                <td><?php echo $c;?></td> 
+                                                <td><?php echo $row['name'];?></td>
+                                                <td><?php echo $row['sid'];?></td>
+                                                <td><?php echo $row['dept'];?></td>
+                                              <td><?php echo $row['year'];?></td>
+
+                                             <td><a href='admin_profile.php?eid=<?php echo $row['id'];?>&s=<?php echo $row['sid'];?>'><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">View</button></a></td>
+                                     
+
+                                               </tr>
+
+                                            </tbody>
+                                          </head>
+
+                                        </div>
+                                        
+
+<?php $c++; } } }?>
+
+</table></div>
+</div> -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -25,7 +25,7 @@
                 mysqli_query($conn, $query);
             }
             fclose($handle);
-            echo "<script>alert('Import done');</script>";
+            echo "<script>alert('Upload CSV file done!');</script>";
         }
     }
 }
@@ -97,11 +97,12 @@
          
               <div class="list-group list-group-flush text-center">
                   <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">  Dashboard_Home </a>
-                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
+                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Message</a>
                     <a href="admin_courses.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Courses</a>
                     <a href="admin_marks.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">View Marks</a>
                     <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                    <a href="admin_status_ch.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                    <a href="pie.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Pie Chart</a>
                    
               </div>
          </div>
@@ -115,7 +116,7 @@
             <h5><label class="text-white">Select CSV File Only : <small>( PRN, Name, Email )</small></label><br></h5>
             <input type="file" name="file" class="text-white" required="required" />
             
-            <input type="submit" name="submit" value="Import" class="btn btn-primary" />
+            <input type="submit" name="submit" value="Upload" class="btn btn-primary" />
         </div>
     </form></div></div>
 
@@ -165,16 +166,16 @@ else
         <h5>
           <label class="text-white">Slelct Courses :</label>
           <div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="customSwitch1" name="check_list[]" value="NPTL">
-  <label class="custom-control-label text-white" for="customSwitch1">NPTL Course</label>
+  <input type="checkbox" class="custom-control-input" id="customSwitch1" name="check_list[]" value="NPTEL">
+  <label class="custom-control-label text-white" for="customSwitch1">NPTEL Course</label>
 </div>
       <div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="customSwitch2" name="check_list[]" value="Cosera">
-  <label class="custom-control-label text-white" for="customSwitch2">Cosera Course</label>
+  <input type="checkbox" class="custom-control-input" id="customSwitch2" name="check_list[]" value="COURSERA">
+  <label class="custom-control-label text-white" for="customSwitch2">COURSERA Course</label>
 </div>
       <div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="customSwitch3" name="check_list[]" value="Udemy">
-  <label class="custom-control-label text-white" for="customSwitch3">Udemy Course</label>
+  <input type="checkbox" class="custom-control-input" id="customSwitch3" name="check_list[]" value="SPOKEN">
+  <label class="custom-control-label text-white" for="customSwitch3">SPOKEN Course</label>
 </div>
 <!--     <label class="text-white">NPTL &nbsp;&nbsp;&nbsp;</label><input type="checkbox" name="check_list[]" value="NPTL"><br>
     <label class="text-white">Cosera&nbsp;&nbsp;</label><input type="checkbox" name="check_list[]" value="Cosera"><br>

@@ -129,9 +129,13 @@ if(isset($_POST['add']))
   $path = $_POST['path'];
   $mark = $_POST['compin'];
 
-
-  $sql = mysqli_query($conn, "insert into course(cname,sub_name, marks, cid, date, status, path, name, sid, year, email, file, msg) values('$cname', '$sname', '$mark', '$cid', '$date', '$status', '$path', '$name', '$saap', '$year', '$email', 'null', 'unread')");
-  
+if($status == 'Runing')
+{
+  $sql = mysqli_query($conn, "insert into course(cname,sub_name, marks, cid, date, status, path, name, sid, year, email, file, msg) values('$cname', '$sname', '', '$cid', '$date', '$status', '$path', '$name', '$saap', '$year', '$email', 'null', 'unread')");
+  }
+  else {
+    $sql = mysqli_query($conn, "insert into course(cname,sub_name, marks, cid, date, status, path, name, sid, year, email, file, msg) values('$cname', '$sname', '$mark', '$cid', '$date', '$status', '$path', '$name', '$saap', '$year', '$email', 'null', 'unread')");
+  }
 
   if($sql==1){
      echo '<script>alert("Data Successfully entered");</script>';
@@ -218,7 +222,7 @@ function checkOptions(select) {
                 </div>
                 
                   <div class="form-group">
-                     <input name='compInput' id='compInput' class="form-control" type="text" style="display: none" placeholder="Enter Marks (%)" />
+                     <input name='compin' id='compInput' class="form-control" type="text" style="display: none" placeholder="Enter Marks (%)" />
                   </div>
                 
                 
@@ -228,7 +232,10 @@ function checkOptions(select) {
                     <input type="text" name="path" class="form-control" placeholder="Enter Path" value="" required="required">
                 </div>
              
-        
+        <div class="form-group">
+          <label>Select certificate</label>
+          <input type="file" name="fileToUpload" id="fileToUpload">
+        </div>
              <!-- Modal footer -->
                 
                   <button type="submit" name="add" class="btn btn-primary">
@@ -253,6 +260,9 @@ function checkOptions(select) {
   session_unset();
 
 ?>
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

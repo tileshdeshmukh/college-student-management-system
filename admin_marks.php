@@ -125,11 +125,12 @@ session_start();
          
               <div class="list-group list-group-flush text-center">
             <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">  Dashboard_Home </a>
-                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
+                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Message</a>
                     <a href="admin_courses.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Courses</a>
                     <a href="admin_marks.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">View Marks</a>
                     <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                    <a href="admin_status_ch.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                    <a href="pie.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Pie Chart</a>
                    
               </div>
          </div>
@@ -230,36 +231,12 @@ session_start();
                                                 <td><?php echo $row['sub_name'];?></td>
                                                 <td><?php echo $row['marks'];?></td>
                                               <td><?php echo $row['year'];?></td>
-                                                <td><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Certificate</button></td>
+                                                <td><a href="Certificate.php?eid=<?php echo $row['id']; ?>"><button type="submit" class="btn btn-primary">Certificate</button></a></td>
 
                                     
 
                                                     <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header bg-primary">
-          <h4 class="modal-title">CERTIFICATE</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <img src="uploades/<?php echo $row['file'] ?>" style="width: 50%, height:50%;">
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-
-
+  
 
                                             </tbody>
                                           </head>
@@ -340,34 +317,9 @@ session_start();
                                                 <td><?php echo $row['marks'];?></td>
                                               <td><?php echo $row['year'];?></td>
 
-                                             <td><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Certificate</button></td>
+                                             <td><a href="Certificate.php?eid=<?php echo $row['id']; ?>"><button type="submit" class="btn btn-primary">Certificate</button></a></td>
 
                                     
-
-                                                    <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header bg-primary">
-          <h4 class="modal-title">CERTIFICATE</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <img src="uploades/<?php echo $row['file'] ?>" style="width: 50%, height:50%;">
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
                           					 
 
                                                </tr>
@@ -450,34 +402,10 @@ session_start();
                                                 <td><?php echo $row['sub_name'];?></td>
                                                 <td><?php echo $row['marks'];?></td>
                                               <td><?php echo $row['year'];?></td>
-                                               <td><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Certificate</button></td>
+                                               <td><a href="Certificate.php?eid=<?php echo $row['id']; ?>"><button type="submit" class="btn btn-primary">Certificate</button></a></td>
 
                                     
 
-                                                    <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header bg-primary">
-          <h4 class="modal-title">CERTIFICATE</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <img src="uploads/<?php echo $row['file']; ?>" style="width: 50%, height:50%;">
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
                                                
                                             
                           					 
@@ -569,34 +497,11 @@ session_start();
                                                 <td><?php echo $row['sub_name'];?></td>
                                                 <td><?php echo $row['marks'];?></td>
                                               <td><?php echo $row['year'];?></td>
-                                               <td><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Certificate</button></td>
+                                               <td><a href="Certificate.php?eid=<?php echo $row['id']; ?>"><button type="submit" class="btn btn-primary">Certificate</button></a></td>
 
                                     
 
-                                                    <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header bg-primary">
-          <h4 class="modal-title">CERTIFICATE</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <img src="uploades/<?php echo $row['file'] ?>" style="width: 50%, height:50%;">
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+                   
                                             
                           					 
 

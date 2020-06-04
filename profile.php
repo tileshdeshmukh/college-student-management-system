@@ -82,7 +82,7 @@ session_start();
         <nav class="navbar navbar-expand-lg  navbar-dark bg-primary navbar-fixed-top">
             <img class="" src="logo.png" style="width: 3.5%; height: 1.8%">
               <pre style="font-size: 12px; color: white;">   
-   Shri Vile Parle Kelavani Mandal
+   Shri Vile Parle Kelavani Mandal's
   <b style="font-size: 17px; color: black;" class="text-uppercase">Institute Of Technology,Dhule  </b></pre> 
                
 
@@ -186,17 +186,46 @@ session_start();
           <div class="col-lg-7 col-md-7 col-sm-5 col-6 bg-light py-3">
 
             <center><img src="logo/svkm.png" style="width: 350px; height: 80px"></center>
+            <center><h3>MOOC</h3></center>
             <hr style="color: blue">            
-            <p class="mx-5">We are an academic college made up of students, scholars, old collegians and staff members. Our rich history is the foundation for our values. We are diverse, welcoming, accepting and passionate about being the best we can be. Join us to make your college experience unforgettable.</p>
+            
 
-			<br><br><br>	            
+			  
 
             <div class="mx-2">
-            	<img src="logo/civ.png" data-toggle="tooltip" title="Civil-Eng(Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/mach.png" data-toggle="tooltip" title="SESA (Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/co.png" data-toggle="tooltip" title="Computer-Eng(Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/et.jpg" data-toggle="tooltip" title="Electrical-(Logo)" class="pl-2 imgup" style="width: 120px; height: 100px">
-            	<img src="logo/it.png" data-toggle="tooltip" title="IT-Eng (Logo)" class="pl-2 imgup" style="width: 120px; height: 100px"></div>
+            <?php
+
+include('db.php');
+$c = 0;
+$c1 = 0;
+$c2 = 0;
+$c3 = 0;
+
+
+
+$sqq = mysqli_query($conn, "select * from course where cname = 'nptel' and sid = '".$_GET['s']."' ");
+while ($r=mysqli_fetch_array($sqq)) {
+  $c++;
+}
+
+$sqq1 = mysqli_query($conn, "select * from course where cname = 'spoken' and sid = '".$_GET['s']."' ");
+while ($r1=mysqli_fetch_array($sqq1)) {
+  $c1++;
+}
+
+$sqq2 = mysqli_query($conn, "select * from course where cname = 'coursera' and sid = '".$_GET['s']."' ");
+while ($r2=mysqli_fetch_array($sqq2)) {
+  $c2++;
+}
+?>
+
+<div class="row">
+  <div class="col-md-4 p-2" style="border: 1px solid blue"><center><h4 class="text-primary">NPTEL</h4><h5 class="pl-3"><?php echo $c; ?></h5></center></div>
+  <div class="col-md-4 p-2" style="border: 1px solid blue"><center><h4 class="text-primary">SPOKEN</h4><h5 class="pl-4"><?php echo $c1; ?></h5></center></div>
+  <div class="col-md-4 p-2" style="border: 1px solid blue"><center><h4 class="text-primary">COURSERA</h4><h5 class="pl-3"><?php echo $c2; ?></h5></center></div>
+</div>
+
+            </div>
         <hr style="color: blue">
          <div class="text-center "><a href="{% http://www.svkm-iot.ac.in/ %}" class="untracked">http://www.svkm-iot.ac.in/</a></div>
           </div>

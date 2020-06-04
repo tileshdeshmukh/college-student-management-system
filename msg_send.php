@@ -54,13 +54,13 @@ session_start();
        <div>
          
               <div class="list-group list-group-flush text-center">
-                    <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Dashboard</a>
-                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Overview</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Events</a>
+                        <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">  Dashboard_Home </a>
+                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Message</a>
+                    <a href="admin_courses.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Courses</a>
+                    <a href="admin_marks.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">View Marks</a>
                     <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
-                
+                    <a href="admin_status_ch.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                    <a href="pie.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Pie Chart</a>
               </div>
          </div>
 
@@ -96,7 +96,7 @@ session_start();
 					              include('db.php');
 							      if (isset($_POST['sub'])) 
 							      {
-									       	$sender = $_POST['sender_name'];
+									       	$sender1 = $_POST['sender_name'];
 									        	$msg = $_POST['msg'];
 
 									        	$new_name = $_GET['name'];
@@ -115,7 +115,7 @@ session_start();
 	$test = "0";
 
 	// Data for text message. This is the text message data.
-	$sender = "TXTLCL"; // This is who the message appears to be from.
+	$sender = "SVKM (MOOC)"; // This is who the message appears to be from.
 	$numbers = $rr['number']; // A single number or a comma-seperated list of numbers
 	$message = $msg;
 	// 612 chars or less
@@ -131,7 +131,7 @@ session_start();
 
 						}
 
-		                                $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender', '$new_sid', '$new_name', '$msg', 'unread', '$date', '$time')");
+		                                $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender1', '$new_sid', '$new_name', '$msg', 'unread', '$date', '$time')");
 									        	if($s == 1)
 									        	{
 									        	    echo '<script>alert("massage Successfully Send");</script>';

@@ -44,6 +44,10 @@ session_start();
         background-color: white;
       }
     </style>
+
+
+
+
   </head>
   <body class="bg-dark">
 
@@ -124,12 +128,12 @@ session_start();
          
               <div class="list-group list-group-flush text-center">
                     <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">  Dashboard_Home </a>
-                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
+                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Message</a>
                     <a href="admin_courses.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Courses</a>
                     <a href="admin_marks.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">View Marks</a>
                     <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
-                   
+                    <a href="admin_status_ch.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                     <a href="pie.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Pie Chart</a>
               </div>
          </div>
 
@@ -231,8 +235,8 @@ if (isset($_POST['y1'])) {
                     <tr>
                       <th>No</th>
                       <th>Name</th>
-                      <th>Saap ID</th>
-                      <th>Depatment</th>
+                      <th>SAP ID</th>
+                      <th>Department</th>
                       <th>Year</th>
                       
                     </tr>
@@ -292,8 +296,8 @@ if (isset($_POST['y2'])) {
                     <tr>
                       <th>No</th>
                       <th>Name</th>
-                      <th>Saap ID</th>
-                      <th>Depatment</th>
+                      <th>SAP ID</th>
+                      <th>Department</th>
                       <th>Year</th>
                      
                     </tr>
@@ -351,8 +355,8 @@ if (isset($_POST['y3'])) {
                     <tr>
                       <th>No</th>
                       <th>Name</th>
-                      <th>Saap ID</th>
-                      <th>Depatment</th>
+                      <th>SAP ID</th>
+                      <th>Department</th>
                       <th>Year</th>
                      
                     </tr>
@@ -409,8 +413,8 @@ if (isset($_POST['y4'])) {
                     <tr>
                       <th>No</th>
                       <th>Name</th>
-                      <th>Saap ID</th>
-                      <th>Depatment</th>
+                      <th>SAP ID</th>
+                      <th>Department</th>
                       <th>Year</th>
                      
                     </tr>

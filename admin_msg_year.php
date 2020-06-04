@@ -2,7 +2,7 @@
 	      include('db.php');
 	    if (isset($_POST['sub'])) 
 	      {
-		$sender = $_POST['sender_name'];
+		$sender1 = $_POST['sender_name'];
 		$msg = $_POST['msg'];
 	$year = $_GET['y'];
    	
@@ -22,7 +22,7 @@
 	$test = "0";
 
 	
-	$sender = "TXTLCL"; // This is who the message appears to be from.
+	$sender = "SVKM (MOOC)"; // This is who the message appears to be from.
 	$numbers = $row['number']; // A single number or a comma-seperated list of numbers
 	$message = $msg;
 	
@@ -45,7 +45,7 @@
 
 
 
-	 $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender', '".$row['sid']."', '".$row['name']."', '$msg', 'unread', '$date', '$time')");
+	 $s = mysqli_query($conn, "insert into notification(sender, sid, stud_name, msg, status, date, time) values('$sender1', '".$row['sid']."', '".$row['name']."', '$msg', 'unread', '$date', '$time')");
   	$coun++;
 	 }
 	if($coun > 0)

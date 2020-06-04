@@ -55,11 +55,12 @@ session_start();
        
               <div class="list-group list-group-flush text-center">
              <a href="admin.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">  Dashboard_Home </a>
-                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Massage</a>
+                   <a href="admin_msg.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Message</a>
                     <a href="admin_courses.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Courses</a>
                     <a href="admin_marks.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">View Marks</a>
                     <a href="all_stud.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                    <a href="admin_status_ch.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Status</a>
+                    <a href="pie.php" class="list-group-item list-group-item-action bg-dark btn-outline-primary text-white">Pie Chart</a>
               </div>
          </div>
 
@@ -73,7 +74,7 @@ session_start();
          <div class="row">
           	<div class="col-md-4 p-5">
 
-            <button class="btn btn-primary mx-5 my-sm-0" type="submit" name="personal">Personal-Massage</button>
+            <button class="btn btn-primary mx-5 my-sm-0" type="submit" name="personal">Personal-Message</button>
            	
 
            </div>
@@ -81,7 +82,7 @@ session_start();
 
            	<div class="col-md-4 p-5">
            	
-           	  <button class="btn btn-primary mx-5 my-sm-0" type="submit" name="grp">Group-Massage</button>
+           	  <button class="btn btn-primary mx-5 my-sm-0" type="submit" name="grp">Group-Message</button>
    
          	</div>
            	
@@ -98,7 +99,7 @@ session_start();
                   
                  </select>
             </div> 
-           	  <button class="btn btn-primary mx-5 my-sm-0" type="submit" name="btn_year" >Year By Massage</button>
+           	  <button class="btn btn-primary mx-5 my-sm-0" type="submit" name="btn_year" >Year By Message</button>
             	
 
        
@@ -124,7 +125,7 @@ session_start();
            
 
 
-           	 <center><h3 class="text-white text-primary">Send Massage</h3></center>
+           	 <center><h3 class="text-white text-primary">Send Message</h3></center>
               <hr class="bg-primary">
             <div class="container-fluid" style="padding: 30px 30px 30px 30px; background-color: black;">
              
@@ -132,14 +133,14 @@ session_start();
               <div class="container-fluid mx-5 px-5">
                    <form action="admin_msg_year.php?y=<?php echo $syear?>" method="POST">
 			            <div class="form-group">
-							<p class="text-white"> Massage send to <b><?php echo $syear; ?></b></p>
+							<p class="text-white"> Message send to <b><?php echo $syear; ?></b></p>
 							<div classs="form-group text-white">
 							<label class="text-white">Sender Name :</label>
 			                 <input type="text" name="sender_name" class="form-control bg-dark text-white" placeholder="Sender name" required="" style="width:54%">			
 
 			                 </div>
 			                 <div class="form-group text-white">
-                 			<label>Massage :</label><br>
+                 			<label>Message :</label><br>
                     		<textarea class="bg-dark text-white" name="msg" rows="8" cols="75" required="required"></textarea>
               				</div>
 				         </div>
@@ -167,7 +168,7 @@ session_start();
                                   <thead>
                                     <tr>
                                       <th>Name</th>
-                                      <th>Saap ID</th>
+                                      <th>SAP ID</th>
                                       
                                       <th>Year</th>
                                    
@@ -230,7 +231,7 @@ session_start();
                                   <thead>
                                     <tr>
                                       <th>Name</th>
-                                      <th>Saap ID</th>
+                                      <th>SAP ID</th>
                                       
                                       <th>Year</th>
                                       <th>massage</th>
@@ -302,7 +303,7 @@ session_start();
                                   <thead>
                                     <tr>
                                       <th>Name</th>
-                                      <th>Saap ID</th>
+                                      <th>SAP ID</th>
                                       
                                       <th>Year</th>
                                       <th>Select</th>
@@ -362,7 +363,7 @@ session_start();
                                   <thead>
                                     <tr>
                                       <th>Name</th>
-                                      <th>Saap ID</th>
+                                      <th>SAP ID</th>
                                       
                                       <th>Year</th>
                                       <th>Select</th>

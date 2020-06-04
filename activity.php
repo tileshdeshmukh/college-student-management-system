@@ -154,7 +154,7 @@ if(isset($_POST['add']))
             <div class="col-lg-7 col-md-7 col-sm-6 col-5 bg-light mx-2 py-3">
 
                      <div class="modal-header btn-primary">
-              <h4 class="modal-title text-white">Add Activity </h4>
+              <h4 class="modal-title text-white">Add additional course </h4>
               
            </div>
            <div style="padding-left: 30px; padding-right: 30px">
@@ -163,7 +163,7 @@ if(isset($_POST['add']))
             <div class=""> 
                     <div style="padding-left: 400px">
                           <button type="submit" name="add" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">
-                          My Activity 
+                          My Additional course 
                           </button>
 
                       </div>
